@@ -125,5 +125,11 @@
 
             return value;
         }
+
+        public static IEnumerable<T> ToValue<T>(this IEnumerable<Maybe<T>> value)
+        {
+            return value.Where(x => x.HasValue)
+                        .Select(x => x.Value);
+        }
     }
 }

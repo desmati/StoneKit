@@ -4,25 +4,22 @@
 		<TargetFramework>net8.0</TargetFramework>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
-	</PropertyGroup>
-
-	<PropertyGroup>
+		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+		<Title>StoneKit Common Utilities and Extension methods</Title>
 		<Authors>Hossein Esmati</Authors>
 		<Company>desmati.com</Company>
-		<Description>Maybe option monad is a generic struct designed to represent optional values in C#</Description>
+		<Description>StoneKit Common Utilities and Extension methods</Description>
 		<PackageIconUrl>https://gravatar.com/avatar/8b4129dc040fc60683eb3f1f7ea1931f754f3c71289f8fbe8b2d98c943a694dc</PackageIconUrl>
-		<PackageTags>Maybe;Monad;Option;Option Monad;Maybe Monad</PackageTags>
+		<PackageTags>Utils;StoneKit;Stone;Maybe;Monad;Option;Option Monad;Maybe Monad</PackageTags>
 		<RepositoryType>git</RepositoryType>
 		<RepositoryUrl>https://github.com/desmati/StoneKit</RepositoryUrl>
 		<PackageProjectUrl>http://desmati.com/</PackageProjectUrl>
 		<IncludeSymbols>false</IncludeSymbols>
-		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-		<Title>Maybe Option Monad Struct</Title>
 		<Copyright>https://github.com/desmati/StoneKit/blob/master/LICENSE</Copyright>
 		<PackageIcon>logo.png</PackageIcon>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<PackageLicenseFile>LICENSE</PackageLicenseFile>
-		<PackageOutputPath>..\..\..\Assets\Packages\$(AssemblyName)</PackageOutputPath>
+		<PackageOutputPath>..\..\Assets\Packages\$(AssemblyName)</PackageOutputPath>
 	</PropertyGroup>
 
 	<PropertyGroup>
@@ -39,21 +36,18 @@
 	</Target>
 
 	<ItemGroup>
-		<ProjectReference Include="..\..\StoneKit.Core.Common\StoneKit.Core.Common.csproj" />
+		<None Include="..\..\Assets\logo.png">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
+		<None Include="..\..\LICENSE">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
+		<None Update="README.md">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
 	</ItemGroup>
 
-	<ItemGroup>
-	  <None Include="..\..\..\Assets\logo.png">
-	    <Pack>True</Pack>
-	    <PackagePath>\</PackagePath>
-	  </None>
-	  <None Include="..\..\..\LICENSE">
-	    <Pack>True</Pack>
-	    <PackagePath>\</PackagePath>
-	  </None>
-	  <None Update="README.md">
-	    <Pack>True</Pack>
-	    <PackagePath>\</PackagePath>
-	  </None>
-	</ItemGroup>
 </Project>

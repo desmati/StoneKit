@@ -12,13 +12,15 @@ It has small memory footprints and performs much faster that other available imp
 
 For a comprehensive understanding of the Maybe Monad, you can refer to the [Pluralsight tech blog](https://www.pluralsight.com/tech-blog/maybe) and [Wikipedia on Monad (functional programming)](https://en.wikipedia.org/wiki/Monad_(functional_programming)).
 
+
 ## Installation
 
-You can include the Maybe monad in your project by using NuGet:
+You can install by using NuGet:
 
 ```bash
-nuget install StoneKit
+nuget install StoneKit.Core.Strcuts.Maybe
 ```
+
 
 ## Usage
 

@@ -1,6 +1,4 @@
-﻿using System.Reflection;
-
-namespace System
+﻿namespace System
 {
     /// <summary>
     /// Extension methods for objects, providing conversion and type-checking functionalities.
@@ -16,8 +14,7 @@ namespace System
         public static Maybe<T> ToMaybe<T>(this T value)
         {
             // Check if the type is a value type and the value is null
-            var isValueType = typeof(T).GetTypeInfo().IsValueType;
-            if (isValueType && ReferenceEquals(value, null))
+            if (!typeof(T).IsValueType && ReferenceEquals(value, null))
             {
                 return Maybe<T>.Empty;
             }

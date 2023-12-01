@@ -9,15 +9,15 @@
 	<PropertyGroup>
 		<Authors>Hossein Esmati</Authors>
 		<Company>desmati.com</Company>
-		<Description>Maybe option monad is a generic struct designed to represent optional values in C#</Description>
+		<Description>Represents a pair of types used for object mapping and type conversion</Description>
 		<PackageIconUrl>https://gravatar.com/avatar/8b4129dc040fc60683eb3f1f7ea1931f754f3c71289f8fbe8b2d98c943a694dc</PackageIconUrl>
-		<PackageTags>Maybe;Monad;Option;Option Monad;Maybe Monad</PackageTags>
+		<PackageTags>TypePair;Tupple;Mapping</PackageTags>
 		<RepositoryType>git</RepositoryType>
 		<RepositoryUrl>https://github.com/desmati/StoneKit</RepositoryUrl>
 		<PackageProjectUrl>http://desmati.com/</PackageProjectUrl>
 		<IncludeSymbols>false</IncludeSymbols>
 		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-		<Title>Maybe Option Monad Struct</Title>
+		<Title>Type Pair</Title>
 		<Copyright>https://github.com/desmati/StoneKit/blob/master/LICENSE</Copyright>
 		<PackageIcon>logo.png</PackageIcon>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
@@ -31,26 +31,29 @@
 
 	<Target Name="SetPackageVersion" DependsOnTargets="Build">
 		<PropertyGroup>
-			<PackageVersion>$([System.DateTime]::Now.ToString(&quot;1.yy.MMdd.HHmmss&quot;))</PackageVersion>
-			<AssemblyVersion>$([System.DateTime]::Now.ToString(&quot;1.yy.MMdd.HHmmss&quot;))</AssemblyVersion>
-			<Version>$([System.DateTime]::Now.ToString(&quot;1.yy.MMdd.HHmmss&quot;))</Version>
-			<FileVersion>$([System.DateTime]::Now.ToString(&quot;1.yy.MMdd.HHmmss&quot;))</FileVersion>
+			<PackageVersion>$([System.DateTime]::Now.ToString("1.yy.MMdd.HHmmss"))</PackageVersion>
+			<AssemblyVersion>$([System.DateTime]::Now.ToString("1.yy.MMdd.HHmmss"))</AssemblyVersion>
+			<Version>$([System.DateTime]::Now.ToString("1.yy.MMdd.HHmmss"))</Version>
+			<FileVersion>$([System.DateTime]::Now.ToString("1.yy.MMdd.HHmmss"))</FileVersion>
 		</PropertyGroup>
 	</Target>
 
 	<ItemGroup>
-		<ProjectReference Include="..\..\StoneKit.Core.Common\StoneKit.Core.Common.csproj" />
+		<PackageReference Include="StoneKit.Core.Common" Version="1.23.1201.104446" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <None Include="..\..\..\Assets\logo.png">
-	    <Pack>True</Pack>
-	    <PackagePath>\</PackagePath>
-	  </None>
-	  <None Include="..\..\..\LICENSE">
-	    <Pack>True</Pack>
-	    <PackagePath>\</PackagePath>
-	  </None>
+		<None Include="..\..\..\Assets\logo.png">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
+		<None Include="..\..\..\LICENSE">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
+	</ItemGroup>
+
+	<ItemGroup>
 	  <None Update="README.md">
 	    <Pack>True</Pack>
 	    <PackagePath>\</PackagePath>

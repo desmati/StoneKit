@@ -10,10 +10,16 @@ if not defined ApiKey (
     exit /b 1
 )
 
-REM Get the latest .nupkg file in the directory
 for /R ".\Assets\Packages\" %%A in ("StoneKit.Core.Structs.Maybe.*.nupkg") do (set LatestPackage=%%A)
+"./Assets/nuget.exe" push %LatestPackage% -Source https://api.nuget.org/v3/index.json -ApiKey %ApiKey%
 
-REM Push the latest package to NuGet
+for /R ".\Assets\Packages\" %%A in ("StoneKit.Core.Common.*.nupkg") do (set LatestPackage=%%A)
+"./Assets/nuget.exe" push %LatestPackage% -Source https://api.nuget.org/v3/index.json -ApiKey %ApiKey%
+
+for /R ".\Assets\Packages\" %%A in ("StoneKit.Core.Structs.TypePair.*.nupkg") do (set LatestPackage=%%A)
+"./Assets/nuget.exe" push %LatestPackage% -Source https://api.nuget.org/v3/index.json -ApiKey %ApiKey%
+
+for /R ".\Assets\Packages\" %%A in ("StoneKit.Core.Reflection.*.nupkg") do (set LatestPackage=%%A)
 "./Assets/nuget.exe" push %LatestPackage% -Source https://api.nuget.org/v3/index.json -ApiKey %ApiKey%
 
 pause
