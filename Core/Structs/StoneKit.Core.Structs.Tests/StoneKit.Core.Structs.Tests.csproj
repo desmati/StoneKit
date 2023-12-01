@@ -24,6 +24,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Maybe\StoneKit.Core.Structs.Maybe.csproj" />
+    <ProjectReference Include="..\StoneKit.Core.Structs.TypePair\StoneKit.Core.Structs.TypePair.csproj" />
   </ItemGroup>
 
 </Project>

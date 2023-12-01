@@ -22,7 +22,7 @@
 		<PackageIcon>logo.png</PackageIcon>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<PackageLicenseFile>LICENSE</PackageLicenseFile>
-		<PackageOutputPath>..\..\Assets\Packages\$(AssemblyName)</PackageOutputPath>
+		<PackageOutputPath>..\..\..\Assets\Packages\$(AssemblyName)</PackageOutputPath>
 	</PropertyGroup>
 
 	<PropertyGroup>
@@ -39,19 +39,19 @@
 	</Target>
 
 	<ItemGroup>
-	  <None Include="..\..\Assets\logo.png" Link="logo.png">
+	  <None Include="..\..\..\Assets\logo.png" Link="logo.png">
 	    <PackagePath>\</PackagePath>
 	    <Pack>True</Pack>
 	  </None>
-	  <None Include="..\..\LICENSE" Link="LICENSE">
+	  <None Include="..\..\..\LICENSE" Link="LICENSE">
 	    <PackagePath>\</PackagePath>
 	    <Pack>True</Pack>
 	  </None>
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\StoneKit.Core.Common\StoneKit.Core.Common.csproj" />
-	  <ProjectReference Include="..\Structs\Maybe\StoneKit.Core.Structs.Maybe.csproj" />
+	  <ProjectReference Include="..\..\StoneKit.Core.Common\StoneKit.Core.Common.csproj" />
+	  <ProjectReference Include="..\..\Structs\Maybe\StoneKit.Core.Structs.Maybe.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>

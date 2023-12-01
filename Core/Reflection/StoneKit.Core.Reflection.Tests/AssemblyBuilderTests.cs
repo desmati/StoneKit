@@ -1,9 +1,9 @@
 namespace StoneKit.Core.Reflection.Tests
 {
-    public class UnitTest1
+    public class AssemblyBuilderTests
     {
         [Fact]
-        public void Test1()
+        public void TestAssemblyBuilder()
         {
 
         }
