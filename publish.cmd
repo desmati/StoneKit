@@ -22,4 +22,7 @@ for /R ".\Assets\Packages\" %%A in ("StoneKit.Core.Structs.TypePair.*.nupkg") do
 for /R ".\Assets\Packages\" %%A in ("StoneKit.Core.Reflection.*.nupkg") do (set LatestPackage=%%A)
 "./Assets/nuget.exe" push %LatestPackage% -Source https://api.nuget.org/v3/index.json -ApiKey %ApiKey%
 
+for /R ".\Assets\Packages\" %%A in ("StoneKit.TransverseMapper.*.nupkg") do (set LatestPackage=%%A)
+"./Assets/nuget.exe" push %LatestPackage% -Source https://api.nuget.org/v3/index.json -ApiKey %ApiKey%
+
 pause

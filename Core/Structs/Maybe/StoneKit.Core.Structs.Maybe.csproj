@@ -31,16 +31,12 @@
 
 	<Target Name="SetPackageVersion" DependsOnTargets="Build">
 		<PropertyGroup>
-			<PackageVersion>$([System.DateTime]::Now.ToString(&quot;1.yy.MMdd.HHmmss&quot;))</PackageVersion>
-			<AssemblyVersion>$([System.DateTime]::Now.ToString(&quot;1.yy.MMdd.HHmmss&quot;))</AssemblyVersion>
-			<Version>$([System.DateTime]::Now.ToString(&quot;1.yy.MMdd.HHmmss&quot;))</Version>
-			<FileVersion>$([System.DateTime]::Now.ToString(&quot;1.yy.MMdd.HHmmss&quot;))</FileVersion>
+			<PackageVersion>$([System.DateTime]::Now.ToString("1.yy.MMdd.HHmmss"))</PackageVersion>
+			<AssemblyVersion>$([System.DateTime]::Now.ToString("1.yy.MMdd.HHmmss"))</AssemblyVersion>
+			<Version>$([System.DateTime]::Now.ToString("1.yy.MMdd.HHmmss"))</Version>
+			<FileVersion>$([System.DateTime]::Now.ToString("1.yy.MMdd.HHmmss"))</FileVersion>
 		</PropertyGroup>
 	</Target>
-
-	<ItemGroup>
-		<ProjectReference Include="..\..\StoneKit.Core.Common\StoneKit.Core.Common.csproj" />
-	</ItemGroup>
 
 	<ItemGroup>
 	  <None Include="..\..\..\Assets\logo.png">

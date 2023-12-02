@@ -9,20 +9,20 @@
 	<PropertyGroup>
 		<Authors>Hossein Esmati</Authors>
 		<Company>desmati.com</Company>
-		<Description>A reflection utility containing handy extension methods and a utility for emitting IL (Intermediate Language) code using the ILGenerator.</Description>
+		<Description>Transverse - Fastest and quickest object mapper for dotnet</Description>
 		<PackageIconUrl>https://gravatar.com/avatar/8b4129dc040fc60683eb3f1f7ea1931f754f3c71289f8fbe8b2d98c943a694dc</PackageIconUrl>
-		<PackageTags>IL Code Generation;Dynamic Code Generation;Reflection Emit;CodeBuilder;Dynamically Generated Code;C# Code Generation;Dynamic Method Generation;NuGet;Dynamic Assembly Generation;Reflection.Emit Helper;Code Emitter;Intermediate Language Generation;Runtime Code Generation;IL Instruction Builder;Dynamic Method Invocation;NuGet Package;Dotnet Code Generation;IL Code Compiler;Code Generation Library</PackageTags>
+		<PackageTags>Transverse;Mapper;Auto Mapper;Tiny Mapper;Fast Mapper;Quick Mapper</PackageTags>
 		<RepositoryType>git</RepositoryType>
 		<RepositoryUrl>https://github.com/desmati/StoneKit</RepositoryUrl>
 		<PackageProjectUrl>http://desmati.com/</PackageProjectUrl>
 		<IncludeSymbols>false</IncludeSymbols>
 		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-		<Title>Reflection Kit</Title>
+		<Title>StoneKit Transverse Mapper</Title>
 		<Copyright>https://github.com/desmati/StoneKit/blob/master/LICENSE</Copyright>
 		<PackageIcon>logo.png</PackageIcon>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<PackageLicenseFile>LICENSE</PackageLicenseFile>
-		<PackageOutputPath>..\..\..\Assets\Packages\$(AssemblyName)</PackageOutputPath>
+		<PackageOutputPath>..\..\Assets\Packages\$(AssemblyName)</PackageOutputPath>
 	</PropertyGroup>
 
 	<PropertyGroup>
@@ -37,36 +37,25 @@
 			<FileVersion>$([System.DateTime]::Now.ToString("1.yy.MMdd.HHmmss"))</FileVersion>
 		</PropertyGroup>
 	</Target>
-
+	
 	<ItemGroup>
-	  <None Include="..\..\..\Assets\logo.png" Link="logo.png">
+	  <None Include="..\..\Assets\logo.png" Link="logo.png">
 	    <PackagePath>\</PackagePath>
 	    <Pack>True</Pack>
 	  </None>
-	  <None Include="..\..\..\LICENSE" Link="LICENSE">
+	  <None Include="..\..\LICENSE" Link="LICENSE">
 	    <PackagePath>\</PackagePath>
 	    <Pack>True</Pack>
 	  </None>
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\..\Common\StoneKit.Core.Common\StoneKit.Core.Common.csproj" />
-	  <ProjectReference Include="..\..\Structs\Maybe\StoneKit.Core.Structs.Maybe.csproj" />
+	  <ProjectReference Include="..\..\Core\Reflection\StoneKit.Core.Reflection\StoneKit.Core.Reflection.csproj" />
+	  <ProjectReference Include="..\..\Core\Structs\Maybe\StoneKit.Core.Structs.Maybe.csproj" />
+	  <ProjectReference Include="..\..\Core\Structs\StoneKit.Core.Structs.TypePair\StoneKit.Core.Structs.TypePair.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <None Update="AssemblyBuilder\README.md">
-	    <PackagePath>\</PackagePath>
-	    <Pack>True</Pack>
-	  </None>
-	  <None Update="CodeGenerator\README.md">
-	    <PackagePath>\</PackagePath>
-	    <Pack>True</Pack>
-	  </None>
-	  <None Update="Extensions\README.md">
-	    <PackagePath>\</PackagePath>
-	    <Pack>True</Pack>
-	  </None>
 	  <None Update="README.md">
 	    <PackagePath>\</PackagePath>
 	    <Pack>True</Pack>

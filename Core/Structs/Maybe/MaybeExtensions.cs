@@ -131,5 +131,15 @@
             return value.Where(x => x.HasValue)
                         .Select(x => x.Value);
         }
+
+        public static Maybe<TValue> GetValue<TKey, TValue>(this IDictionary<TKey, TValue> value, TKey key)
+        {
+            var result = default(TValue);
+            var exists = value.TryGetValue(key, out result);
+            
+            return exists
+                ? new Maybe<TValue>(result!, true)
+                : Maybe<TValue>.Empty;
+        }
     }
 }

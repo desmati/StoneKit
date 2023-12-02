@@ -37,13 +37,19 @@
         /// <returns>The type of the member.</returns>
         public static Type GetMemberType(this MemberInfo value)
         {
-            return value switch
+            if (value.IsField())
             {
-                FieldInfo fieldInfo => fieldInfo.FieldType,
-                PropertyInfo propertyInfo => propertyInfo.PropertyType,
-                MethodInfo methodInfo => methodInfo.ReturnType,
-                _ => throw new NotSupportedException("Unsupported member type."),
-            };
+                return ((FieldInfo)value).FieldType;
+            }
+            if (value.IsProperty())
+            {
+                return ((PropertyInfo)value).PropertyType;
+            }
+            if (value.IsMethod())
+            {
+                return ((MethodInfo)value).ReturnType;
+            }
+            throw new NotSupportedException();
         }
 
         /// <summary>
@@ -53,7 +59,7 @@
         /// <returns>True if the member is a field; otherwise, false.</returns>
         public static bool IsField(this MemberInfo value)
         {
-            return value is FieldInfo;
+            return value?.MemberType == MemberTypes.Field;
         }
 
         /// <summary>
@@ -63,7 +69,7 @@
         /// <returns>True if the member is a property; otherwise, false.</returns>
         public static bool IsProperty(this MemberInfo value)
         {
-            return value is PropertyInfo;
+            return value?.MemberType == MemberTypes.Property;
         }
 
         /// <summary>
@@ -73,7 +79,7 @@
         /// <returns>True if the member is a method; otherwise, false.</returns>
         private static bool IsMethod(this MemberInfo value)
         {
-            return value is MethodInfo;
+            return value?.MemberType == MemberTypes.Method;
         }
     }
 }

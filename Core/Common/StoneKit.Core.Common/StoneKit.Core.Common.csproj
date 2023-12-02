@@ -19,7 +19,7 @@
 		<PackageIcon>logo.png</PackageIcon>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<PackageLicenseFile>LICENSE</PackageLicenseFile>
-		<PackageOutputPath>..\..\Assets\Packages\$(AssemblyName)</PackageOutputPath>
+		<PackageOutputPath>..\..\..\Assets\Packages\$(AssemblyName)</PackageOutputPath>
 	</PropertyGroup>
 
 	<PropertyGroup>
@@ -36,11 +36,11 @@
 	</Target>
 
 	<ItemGroup>
-		<None Include="..\..\Assets\logo.png">
+		<None Include="..\..\..\Assets\logo.png">
 			<Pack>True</Pack>
 			<PackagePath>\</PackagePath>
 		</None>
-		<None Include="..\..\LICENSE">
+		<None Include="..\..\..\LICENSE">
 			<Pack>True</Pack>
 			<PackagePath>\</PackagePath>
 		</None>
