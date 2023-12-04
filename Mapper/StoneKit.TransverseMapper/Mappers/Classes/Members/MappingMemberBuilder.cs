@@ -123,7 +123,7 @@ namespace StoneKit.TransverseMapper.Mappers.Classes.Members
             var result = new Dictionary<string, string>();
             foreach (MemberInfo member in targetMembers)
             {
-                Maybe<BindAttribute> bindAttribute = member.GetAttribute<BindAttribute>().ToMaybe()!;
+                Maybe<BindAttribute> bindAttribute = member.GetAttribute<BindAttribute>().ToMaybe();
                 if (bindAttribute.HasNoValue)
                 {
                     continue;
@@ -144,7 +144,7 @@ namespace StoneKit.TransverseMapper.Mappers.Classes.Members
             {
                 return true;
             }
-            if (ignores.FirstOrDefault(x => typePair.Target.IsAssignableFrom(x.TargetType))?.IsNotNull() == true)
+            if (ignores.FirstOrDefault(x => typePair.Target.IsAssignableFrom(x.TargetType)).IsNotNull())
             {
                 return true;
             }
@@ -186,8 +186,8 @@ namespace StoneKit.TransverseMapper.Mappers.Classes.Members
 
                 foreach (var targetName in targetNames)
                 {
-                    MemberInfo targetMember = targetMembers.FirstOrDefault(x => _config.NameMatching(targetName, x.Name))!;
-                    if (targetMember?.IsNull() == true)
+                    MemberInfo targetMember = targetMembers.FirstOrDefault(x => _config.NameMatching(targetName, x.Name));
+                    if (targetMember.IsNull())
                     {
                         result.AddRange(GetBindMappingMemberPath(typePair, bindingConfig, sourceMember));
                         continue;
@@ -196,11 +196,11 @@ namespace StoneKit.TransverseMapper.Mappers.Classes.Members
                     if (concreteBindingType.HasValue)
                     {
                         var mappingTypePair = new TypePair(sourceMember.GetMemberType(), concreteBindingType.Value);
-                        result.Add(new MappingMemberPath(sourceMember, targetMember!, mappingTypePair));
+                        result.Add(new MappingMemberPath(sourceMember, targetMember, mappingTypePair));
                     }
                     else
                     {
-                        result.Add(new MappingMemberPath(sourceMember, targetMember!));
+                        result.Add(new MappingMemberPath(sourceMember, targetMember));
                     }
 
                     result.AddRange(GetBindMappingMemberPath(typePair, bindingConfig, sourceMember));

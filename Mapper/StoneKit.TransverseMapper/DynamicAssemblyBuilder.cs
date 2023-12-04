@@ -4,7 +4,7 @@ using System.Reflection.Mapping;
 
 namespace StoneKit.TransverseMapper
 {
-    public class DynamicAssemblyBuilder
+    internal class DynamicAssemblyBuilder
     {
         private static readonly DynamicAssembly _dynamicAssembly = new DynamicAssembly();
 
@@ -12,7 +12,6 @@ namespace StoneKit.TransverseMapper
         {
             return _dynamicAssembly;
         }
-
 
         private sealed class DynamicAssembly : IDynamicAssembly
         {

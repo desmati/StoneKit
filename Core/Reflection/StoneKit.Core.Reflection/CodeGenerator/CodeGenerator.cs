@@ -31,7 +31,7 @@ namespace System.Reflection
                 return this;
             }
 
-            if (stackType.IsValueType == false && targetType == typeof(object))
+            if (!stackType.IsValueType && targetType == typeof(object))
             {
                 return this;
             }

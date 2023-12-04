@@ -11,7 +11,7 @@
         /// </summary>
         /// <param name="targetMemberName">The name of the target member to bind to.</param>
         /// <param name="targetType">The target type to which the attribute applies. If null, the attribute applies to all types.</param>
-        public BindAttribute(string targetMemberName, Type targetType = null!)
+        public BindAttribute(string targetMemberName, Type targetType = null)
         {
             MemberName = targetMemberName;
             TargetType = targetType;

@@ -10,7 +10,7 @@
         /// Initializes a new instance of the <see cref="IgnoreAttribute"/> class.
         /// </summary>
         /// <param name="targetType">The target type to which the attribute applies. If null, the attribute applies to all types.</param>
-        public IgnoreAttribute(Type targetType = null!)
+        public IgnoreAttribute(Type targetType = null)
         {
             TargetType = targetType;
         }

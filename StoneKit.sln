@@ -13,15 +13,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Reflection", "Reflection", 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Utilities", "Utilities", "{1A13D217-C865-4DDF-A199-C7A048302703}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StoneKit.Core.Utilities", "Core\Utilities\StoneKit.Core.Utilities\StoneKit.Core.Utilities.csproj", "{E6642F9C-A825-451B-90F3-242A0E9B5BF8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StoneKit.Core.Utilities", "Core\Utilities\StoneKit.Core.Utilities\StoneKit.Core.Utilities.csproj", "{E6642F9C-A825-451B-90F3-242A0E9B5BF8}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{FA769FEB-B2AE-4860-B0B7-30F6E4293901}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StoneKit.Core.Structs.Tests", "Core\Structs\StoneKit.Core.Structs.Tests\StoneKit.Core.Structs.Tests.csproj", "{2D307C67-B2F4-4D19-AD59-24252481077B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StoneKit.Core.Structs.Tests", "Core\Structs\StoneKit.Core.Structs.Tests\StoneKit.Core.Structs.Tests.csproj", "{2D307C67-B2F4-4D19-AD59-24252481077B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StoneKit.Core.Structs.TypePair", "Core\Structs\StoneKit.Core.Structs.TypePair\StoneKit.Core.Structs.TypePair.csproj", "{7A564A37-6DE9-4F20-91C9-1217EADB72E8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StoneKit.Core.Structs.TypePair", "Core\Structs\StoneKit.Core.Structs.TypePair\StoneKit.Core.Structs.TypePair.csproj", "{7A564A37-6DE9-4F20-91C9-1217EADB72E8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StoneKit.Core.Reflection.Tests", "Core\Reflection\StoneKit.Core.Reflection.Tests\StoneKit.Core.Reflection.Tests.csproj", "{EA201755-6874-4F8A-AFD1-3DF15247929C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StoneKit.Core.Reflection.Tests", "Core\Reflection\StoneKit.Core.Reflection.Tests\StoneKit.Core.Reflection.Tests.csproj", "{EA201755-6874-4F8A-AFD1-3DF15247929C}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StoneKit.Core.Reflection", "Core\Reflection\StoneKit.Core.Reflection\StoneKit.Core.Reflection.csproj", "{05635650-B6F7-40DE-A469-7EB28D3E76EC}"
 EndProject
@@ -36,11 +36,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StoneKit.TransverseMapper",
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{266F7601-5B15-4BF0-AE89-F3EE68B3F457}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StoneKit.Core.Common.Tests", "Core\Common\StoneKit.Core.Common.Tests\StoneKit.Core.Common.Tests.csproj", "{D380A08B-F0F0-4E16-BD77-E0B9473D9765}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StoneKit.Core.Common.Tests", "Core\Common\StoneKit.Core.Common.Tests\StoneKit.Core.Common.Tests.csproj", "{D380A08B-F0F0-4E16-BD77-E0B9473D9765}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StoneKit.Core.Common", "Core\Common\StoneKit.Core.Common\StoneKit.Core.Common.csproj", "{7A4A3C20-3712-49D3-B86D-2AD94EE5BF82}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StoneKit.TransverseMapper.Tests", "Mapper\StoneKit.TransverseMapper.Tests\StoneKit.TransverseMapper.Tests.csproj", "{27543EA6-448E-434F-B7F2-0DA662710E9B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StoneKit.TransverseMapper.Tests", "Mapper\StoneKit.TransverseMapper.Tests\StoneKit.TransverseMapper.Tests.csproj", "{27543EA6-448E-434F-B7F2-0DA662710E9B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StoneKit.TransverseMapper.Benchmark", "Mapper\StoneKit.TransverseMapper.Benchmark\StoneKit.TransverseMapper.Benchmark.csproj", "{09272A66-609F-43CB-95C2-025E7B372617}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -88,6 +90,10 @@ Global
 		{27543EA6-448E-434F-B7F2-0DA662710E9B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{27543EA6-448E-434F-B7F2-0DA662710E9B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{27543EA6-448E-434F-B7F2-0DA662710E9B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{09272A66-609F-43CB-95C2-025E7B372617}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{09272A66-609F-43CB-95C2-025E7B372617}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{09272A66-609F-43CB-95C2-025E7B372617}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{09272A66-609F-43CB-95C2-025E7B372617}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -107,6 +113,7 @@ Global
 		{D380A08B-F0F0-4E16-BD77-E0B9473D9765} = {266F7601-5B15-4BF0-AE89-F3EE68B3F457}
 		{7A4A3C20-3712-49D3-B86D-2AD94EE5BF82} = {266F7601-5B15-4BF0-AE89-F3EE68B3F457}
 		{27543EA6-448E-434F-B7F2-0DA662710E9B} = {FE7816DE-E540-46B3-9FB3-328C7AED77A7}
+		{09272A66-609F-43CB-95C2-025E7B372617} = {FE7816DE-E540-46B3-9FB3-328C7AED77A7}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {62DD61DF-EBBE-46C3-94C5-C769E05AA273}

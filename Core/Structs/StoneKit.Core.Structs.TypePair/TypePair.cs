@@ -47,7 +47,7 @@ namespace System
         /// <summary>
         /// Gets a value indicating whether the source type is nullable while the target type is not.
         /// </summary>
-        public bool IsNullableToNotNullable => Source.IsNullable() && Target.IsNullable() == false;
+        public bool IsNullableToNotNullable => Source.IsNullable() && !Target.IsNullable();
 
         /// <summary>
         /// Gets a value indicating whether the types are both value types.
@@ -68,7 +68,7 @@ namespace System
         {
             get
             {
-                if (IsEqualTypes == false)
+                if (!IsEqualTypes)
                 {
                     return false;
                 }

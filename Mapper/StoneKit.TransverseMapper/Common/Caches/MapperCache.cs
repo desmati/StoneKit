@@ -73,7 +73,7 @@ namespace StoneKit.TransverseMapper.Common.Caches
         public MapperCacheItem Add(TypePair key, Mapper mapper)
         {
             MapperCacheItem result;
-            if (_cache.TryGetValue(key, out result!))
+            if (_cache.TryGetValue(key, out result))
             {
                 return result;
             }
@@ -97,7 +97,7 @@ namespace StoneKit.TransverseMapper.Common.Caches
         public Maybe<MapperCacheItem> Get(TypePair key)
         {
             MapperCacheItem result;
-            if (_cache.TryGetValue(key, out result!))
+            if (_cache.TryGetValue(key, out result))
             {
                 return new Maybe<MapperCacheItem>(result);
             }

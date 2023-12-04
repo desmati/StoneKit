@@ -17,7 +17,7 @@ namespace StoneKit.TransverseMapper.Common.Caches
         /// <summary>
         /// Gets or sets the Mapper instance associated with the MapperCacheItem.
         /// </summary>
-        public Mapper Mapper { get; set; } = null!;
+        public Mapper Mapper { get; set; } = null;
 
         /// <summary>
         /// Emits the map method for the Mapper associated with this MapperCacheItem.
@@ -28,8 +28,8 @@ namespace StoneKit.TransverseMapper.Common.Caches
         public IEmitterType EmitMapMethod(IEmitterType sourceMember, IEmitterType targetMember)
         {
             Type mapperType = typeof(Mapper);
-            MethodInfo mapMethod = mapperType.GetMethod(Mapper.MapMethodName, BindingFlags.Instance | BindingFlags.Public)!;
-            FieldInfo mappersField = mapperType.GetField(Mapper.MappersFieldName, BindingFlags.Instance | BindingFlags.NonPublic)!;
+            MethodInfo mapMethod = mapperType.GetMethod(Mapper.MapMethodName, BindingFlags.Instance | BindingFlags.Public);
+            FieldInfo mappersField = mapperType.GetField(Mapper.MappersFieldName, BindingFlags.Instance | BindingFlags.NonPublic);
             IEmitterType mappers = EmitField.Load(EmitThis.Load(mapperType), mappersField);
             IEmitterType mapper = EmitArray.Load(mappers, Id);
             IEmitterType result = EmitMethod.Call(mapMethod, mapper, sourceMember, targetMember);

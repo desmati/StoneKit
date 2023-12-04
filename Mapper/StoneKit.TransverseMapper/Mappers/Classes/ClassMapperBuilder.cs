@@ -49,7 +49,7 @@ namespace StoneKit.TransverseMapper.Mappers.Classes
             MapperCacheItem rootMapperCacheItem = _mapperCache.AddStub(typePair);
             Maybe<MapperCache> mappers = EmitMapClass(typePair, typeBuilder);
 
-            var rootMapper = (Mapper)Activator.CreateInstance(typeBuilder.CreateType())!;
+            var rootMapper = (Mapper)Activator.CreateInstance(typeBuilder.CreateType());
 
             UpdateMappers(mappers, rootMapperCacheItem.Id, rootMapper);
 
@@ -174,7 +174,7 @@ namespace StoneKit.TransverseMapper.Mappers.Classes
                     }
                     else
                     {
-                        result.Add(null!);
+                        result.Add(null);
                     }
                 }
                 result[rootMapperId] = rootMapper;

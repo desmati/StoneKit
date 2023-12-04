@@ -18,7 +18,7 @@
         /// <summary>
         /// Array of mappers used in mapping operations.
         /// </summary>
-        protected Mapper[] _mappers = null!;
+        protected Mapper[] _mappers = null;
 
         /// <summary>
         /// Adds an array of mappers to the current instance.
@@ -60,7 +60,7 @@
         /// <param name="source">The source object to map from.</param>
         /// <param name="target">The optional target object to map to.</param>
         /// <returns>The result of the mapping operation.</returns>
-        public object Map(object source, object target = null!)
+        public object Map(object source, object target = null)
         {
             return MapCore(source, target);
         }

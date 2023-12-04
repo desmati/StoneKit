@@ -69,7 +69,7 @@ namespace StoneKit.TransverseMapper.Mappers.Types.Convertible
 
             if (pair.Target.IsEnum)
             {
-                if (pair.Source.IsEnum == false)
+                if (!pair.Source.IsEnum)
                 {
                     if (pair.Source == typeof(string))
                     {

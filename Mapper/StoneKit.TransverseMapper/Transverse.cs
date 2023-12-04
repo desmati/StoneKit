@@ -177,7 +177,7 @@ namespace System.Reflection.Mapping
         {
             Mapper mapper;
 
-            if (_mappers.TryGetValue(typePair, out mapper) == false)
+            if (!_mappers.TryGetValue(typePair, out mapper))
             {
                 throw new TransverseException($"No binding found for '{typePair.Source.Name}' to '{typePair.Target.Name}'. " +
                                               $"Call Transverse.Bind<{typePair.Source.Name}, {typePair.Target.Name}>()");
