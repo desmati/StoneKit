@@ -25,7 +25,7 @@
         public EmitComposite Add(IEmitter node)
         {
             // Add the node to the list if it is not null
-            if (node.IsNotNull())
+            if (node != null)
             {
                 _nodes.Add(node);
             }

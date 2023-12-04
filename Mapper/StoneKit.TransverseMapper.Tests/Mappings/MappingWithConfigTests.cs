@@ -1,6 +1,8 @@
 ﻿using System.Reflection.Mapping;
 
-namespace StoneKit.TransverseMapper.Tests.Mappings
+using Xunit;
+
+namespace UnitTests.Mappings
 {
     public sealed class MappingWithConfigTests
     {

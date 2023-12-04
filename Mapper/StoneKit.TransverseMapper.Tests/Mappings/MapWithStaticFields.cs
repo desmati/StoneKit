@@ -1,7 +1,8 @@
 ﻿using System.Reflection.Mapping;
+
 using Xunit;
 
-namespace StoneKit.TransverseMapper.Tests.Mappings
+namespace UnitTests.Mappings
 {
     public class MapWithStaticFields
     {

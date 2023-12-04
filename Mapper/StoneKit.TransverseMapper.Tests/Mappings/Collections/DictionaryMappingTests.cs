@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection.Mapping;
+﻿using System.Reflection.Mapping;
+
 using Xunit;
 
-namespace StoneKit.TransverseMapper.Tests.Mappings.Collections
+namespace UnitTests.Mappings.Collections
 {
     public sealed class DictionaryMappingTests
     {

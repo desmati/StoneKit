@@ -2,7 +2,9 @@
 
 using System.Reflection.Mapping;
 
-namespace StoneKit.TransverseMapper.Tests.Mappings.Attributes
+using Xunit;
+
+namespace UnitTests.Mappings.Attributes
 {
     public sealed class MappingWithGenericTypeTests
     {

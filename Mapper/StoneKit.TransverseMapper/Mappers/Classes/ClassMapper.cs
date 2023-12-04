@@ -1,48 +1,42 @@
-﻿using System;
-
-namespace StoneKit.TransverseMapper.Mappers.Classes
+﻿namespace StoneKit.TransverseMapper.Mappers.Classes
 {
     /// <summary>
-    /// Base class for mapping between source and target classes.
+    /// Abstract base class for class mappers.
     /// </summary>
-    /// <typeparam name="TSource">The type of the source class.</typeparam>
-    /// <typeparam name="TTarget">The type of the target class.</typeparam>
+    /// <typeparam name="TSource">The source type of the class mapper.</typeparam>
+    /// <typeparam name="TTarget">The target type of the class mapper.</typeparam>
     internal abstract class ClassMapper<TSource, TTarget> : MapperOf<TSource, TTarget>
     {
         /// <summary>
-        /// Creates a new instance of the target class.
+        /// Creates an instance of the target type.
         /// </summary>
-        /// <returns>The newly created target class instance.</returns>
+        /// <returns>The created instance of the target type.</returns>
         protected virtual TTarget CreateTargetInstance()
         {
-            throw new NotImplementedException("CreateTargetInstance method is not implemented.");
+            throw new NotImplementedException();
         }
 
         /// <summary>
-        /// Maps properties from the source class to the target class.
+        /// Performs the mapping operation for class types from the source to the target.
         /// </summary>
-        /// <param name="source">The source class instance.</param>
-        /// <param name="target">The target class instance.</param>
-        /// <returns>The mapped target class instance.</returns>
+        /// <param name="source">The source object to map from.</param>
+        /// <param name="target">The target object to map to.</param>
+        /// <returns>The result of the mapping operation.</returns>
         protected abstract TTarget MapClass(TSource source, TTarget target);
 
         /// <summary>
-        /// Overrides the base class's core mapping method to handle target instance creation and class mapping.
+        /// Overrides the base class method to perform the core mapping operation for class types.
         /// </summary>
-        /// <param name="source">The source class instance.</param>
-        /// <param name="target">The target class instance to be mapped.</param>
-        /// <returns>The mapped target class instance.</returns>
+        /// <param name="source">The source object to map from.</param>
+        /// <param name="target">The target object to map to.</param>
+        /// <returns>The result of the mapping operation.</returns>
         protected override TTarget MapCore(TSource source, TTarget target)
         {
             if (target == null)
             {
-                // If the target instance is not provided, create a new one.
                 target = CreateTargetInstance();
             }
-
-            // Map properties from the source class to the target class.
             TTarget result = MapClass(source, target);
-
             return result;
         }
     }

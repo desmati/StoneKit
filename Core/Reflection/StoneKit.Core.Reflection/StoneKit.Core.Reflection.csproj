@@ -50,7 +50,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\..\Common\StoneKit.Core.Common\StoneKit.Core.Common.csproj" />
 	  <ProjectReference Include="..\..\Structs\Maybe\StoneKit.Core.Structs.Maybe.csproj" />
 	</ItemGroup>
 

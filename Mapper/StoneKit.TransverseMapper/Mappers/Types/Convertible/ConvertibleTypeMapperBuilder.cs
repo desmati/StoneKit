@@ -1,5 +1,5 @@
-﻿using StoneKit.TransverseMapper.MapperBuilder;
-using StoneKit.TransverseMapper.Mappers.Members;
+﻿using StoneKit.TransverseMapper.Mappers.Builder;
+using StoneKit.TransverseMapper.Mappers.Classes.Members;
 
 using System.ComponentModel;
 using System.Reflection;
@@ -9,7 +9,7 @@ namespace StoneKit.TransverseMapper.Mappers.Types.Convertible
     /// <summary>
     /// Builder for creating <see cref="ConvertibleTypeMapper"/> instances.
     /// </summary>
-    internal sealed class ConvertibleTypeMapperBuilder : MapperBuilderBase
+    internal sealed class ConvertibleTypeMapperBuilder : MapperBuilder
     {
         private static readonly Func<object, object> _nothingConverter = x => x;
 
@@ -21,33 +21,43 @@ namespace StoneKit.TransverseMapper.Mappers.Types.Convertible
         {
         }
 
-        /// <inheritdoc/>
+        /// <summary>
+        /// Gets the scope name for the mapper builder.
+        /// </summary>
         protected override string ScopeName => "ConvertibleTypeMappers";
 
-        /// <inheritdoc/>
-        protected override MapperBase BuildCore(TypePair typePair)
+        /// <summary>
+        /// Builds a <see cref="ConvertibleTypeMapper"/> for the specified type pair.
+        /// </summary>
+        /// <param name="typePair">The type pair.</param>
+        /// <returns>The created mapper.</returns>
+        protected override Mapper BuildCore(TypePair typePair)
         {
             Func<object, object> converter = GetConverter(typePair);
             return new ConvertibleTypeMapper(converter);
         }
 
-        /// <inheritdoc/>
-        protected override MapperBase BuildCore(TypePair parentTypePair, MappingMember mappingMember)
+        /// <summary>
+        /// Builds a <see cref="ConvertibleTypeMapper"/> for the specified mapping member.
+        /// </summary>
+        /// <param name="parentTypePair">The parent type pair.</param>
+        /// <param name="mappingMember">The mapping member.</param>
+        /// <returns>The created mapper.</returns>
+        protected override Mapper BuildCore(TypePair parentTypePair, MappingMember mappingMember)
         {
             return BuildCore(mappingMember.TypePair);
         }
 
-        /// <inheritdoc/>
+        /// <summary>
+        /// Checks if the specified type pair is supported by this mapper builder.
+        /// </summary>
+        /// <param name="typePair">The type pair.</param>
+        /// <returns><c>true</c> if the type pair is supported; otherwise, <c>false</c>.</returns>
         protected override bool IsSupportedCore(TypePair typePair)
         {
             return IsSupportedType(typePair.Source) || typePair.HasTypeConverter();
         }
 
-        /// <summary>
-        /// Converts the source enum to the target enum or vice versa.
-        /// </summary>
-        /// <param name="pair">The type pair.</param>
-        /// <returns>The converter function if conversion is possible; otherwise, an empty maybe.</returns>
         private static Maybe<Func<object, object>> ConvertEnum(TypePair pair)
         {
             Func<object, object> result;
@@ -63,7 +73,7 @@ namespace StoneKit.TransverseMapper.Mappers.Types.Convertible
                 {
                     if (pair.Source == typeof(string))
                     {
-                        result = x => Enum.Parse(pair.Target, x.ToString()!);
+                        result = x => Enum.Parse(pair.Target, x.ToString());
                         return result.ToMaybe();
                     }
                 }
@@ -79,11 +89,6 @@ namespace StoneKit.TransverseMapper.Mappers.Types.Convertible
             return Maybe<Func<object, object>>.Empty;
         }
 
-        /// <summary>
-        /// Gets the appropriate converter function for the given type pair.
-        /// </summary>
-        /// <param name="pair">The type pair.</param>
-        /// <returns>The converter function or null if no converter is found.</returns>
         private static Func<object, object> GetConverter(TypePair pair)
         {
             if (pair.IsDeepCloneable)
@@ -94,13 +99,13 @@ namespace StoneKit.TransverseMapper.Mappers.Types.Convertible
             TypeConverter fromConverter = TypeDescriptor.GetConverter(pair.Source);
             if (fromConverter.CanConvertTo(pair.Target))
             {
-                return x => fromConverter.ConvertTo(x, pair.Target)!;
+                return x => fromConverter.ConvertTo(x, pair.Target);
             }
 
             TypeConverter toConverter = TypeDescriptor.GetConverter(pair.Target);
             if (toConverter.CanConvertFrom(pair.Source))
             {
-                return x => toConverter.ConvertFrom(x)!;
+                return x => toConverter.ConvertFrom(x);
             }
 
             Maybe<Func<object, object>> enumConverter = ConvertEnum(pair);
@@ -111,22 +116,17 @@ namespace StoneKit.TransverseMapper.Mappers.Types.Convertible
 
             if (pair.IsNullableToNotNullable)
             {
-                return GetConverter(new TypePair(Nullable.GetUnderlyingType(pair.Source)!, pair.Target));
+                return GetConverter(new TypePair(Nullable.GetUnderlyingType(pair.Source), pair.Target));
             }
 
             if (pair.Target.IsNullable())
             {
-                return GetConverter(new TypePair(pair.Source, Nullable.GetUnderlyingType(pair.Target)!));
+                return GetConverter(new TypePair(pair.Source, Nullable.GetUnderlyingType(pair.Target)));
             }
 
-            return null!;
+            return null;
         }
 
-        /// <summary>
-        /// Checks if the specified type is supported for conversion.
-        /// </summary>
-        /// <param name="value">The type to check.</param>
-        /// <returns>True if the type is supported; otherwise, false.</returns>
         private bool IsSupportedType(Type value)
         {
             return value.IsPrimitive
@@ -134,7 +134,7 @@ namespace StoneKit.TransverseMapper.Mappers.Types.Convertible
                    || value == typeof(Guid)
                    || value.IsEnum
                    || value == typeof(decimal)
-                   || value.IsNullable() && IsSupportedType(Nullable.GetUnderlyingType(value)!);
+                   || value.IsNullable() && IsSupportedType(Nullable.GetUnderlyingType(value));
         }
     }
 }

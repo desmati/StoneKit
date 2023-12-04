@@ -1,8 +1,8 @@
-﻿using System;
-using System.Reflection.Mapping;
+﻿using System.Reflection.Mapping;
+
 using Xunit;
 
-namespace StoneKit.TransverseMapper.Tests.Mappings.Classes
+namespace UnitTests.Mappings.Classes
 {
     public sealed class ClassHierarchyMappingTests
     {

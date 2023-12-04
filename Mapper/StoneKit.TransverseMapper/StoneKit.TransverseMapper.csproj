@@ -37,29 +37,22 @@
 			<FileVersion>$([System.DateTime]::Now.ToString("1.yy.MMdd.HHmmss"))</FileVersion>
 		</PropertyGroup>
 	</Target>
-	
-	<ItemGroup>
-	  <None Include="..\..\Assets\logo.png" Link="logo.png">
-	    <PackagePath>\</PackagePath>
-	    <Pack>True</Pack>
-	  </None>
-	  <None Include="..\..\LICENSE" Link="LICENSE">
-	    <PackagePath>\</PackagePath>
-	    <Pack>True</Pack>
-	  </None>
-	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\..\Core\Reflection\StoneKit.Core.Reflection\StoneKit.Core.Reflection.csproj" />
-	  <ProjectReference Include="..\..\Core\Structs\Maybe\StoneKit.Core.Structs.Maybe.csproj" />
-	  <ProjectReference Include="..\..\Core\Structs\StoneKit.Core.Structs.TypePair\StoneKit.Core.Structs.TypePair.csproj" />
+		<None Include="..\..\Assets\logo.png" Link="logo.png">
+			<PackagePath>\</PackagePath>
+			<Pack>True</Pack>
+		</None>
+		<None Include="..\..\LICENSE" Link="LICENSE">
+			<PackagePath>\</PackagePath>
+			<Pack>True</Pack>
+		</None>
+		<ProjectReference Include="..\..\Core\Reflection\StoneKit.Core.Reflection\StoneKit.Core.Reflection.csproj" />
+		<ProjectReference Include="..\..\Core\Structs\Maybe\StoneKit.Core.Structs.Maybe.csproj" />
+		<ProjectReference Include="..\..\Core\Structs\StoneKit.Core.Structs.TypePair\StoneKit.Core.Structs.TypePair.csproj" />
+		<None Update="README.md">
+			<PackagePath>\</PackagePath>
+			<Pack>True</Pack>
+		</None>
 	</ItemGroup>
-
-	<ItemGroup>
-	  <None Update="README.md">
-	    <PackagePath>\</PackagePath>
-	    <Pack>True</Pack>
-	  </None>
-	</ItemGroup>
-
 </Project>

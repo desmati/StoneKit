@@ -1,7 +1,7 @@
 ﻿using System;
 using Xunit;
 
-namespace StoneKit.TransverseMapper.Tests.Mappings
+namespace UnitTests.Mappings
 {
     public sealed class MapWithCustomBindTests
     {

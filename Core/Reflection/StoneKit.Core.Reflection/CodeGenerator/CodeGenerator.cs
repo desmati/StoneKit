@@ -113,7 +113,7 @@ namespace System.Reflection
             var actualArguments = method?.GetParameters();
 
             // Handle null or empty arguments
-            if (arguments.IsNull())
+            if (arguments == null)
             {
                 arguments = new IEmitterType[0];
             }
@@ -125,7 +125,7 @@ namespace System.Reflection
             }
 
             // Emit the invocation object if not null
-            if (invocationObject?.IsNotNull() == true)
+            if (invocationObject != null)
             {
                 invocationObject.Emit(this);
             }

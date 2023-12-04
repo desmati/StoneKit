@@ -1,8 +1,10 @@
 ﻿using System.Reflection.Mapping;
 
-namespace StoneKit.TransverseMapper.Tests
+using Xunit;
+
+namespace UnitTests
 {
-    public sealed class Utils
+    public sealed class ForTests
     {
 
         [Fact]
@@ -28,7 +30,7 @@ namespace StoneKit.TransverseMapper.Tests
     }
 
 
-    public static class Extensions
+    public static class MyExtensions
     {
         public static TTarget Map<TSource, TTarget>(this TSource source)
         {

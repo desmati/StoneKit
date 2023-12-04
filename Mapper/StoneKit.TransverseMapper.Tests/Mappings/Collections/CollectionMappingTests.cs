@@ -1,7 +1,9 @@
 ﻿using System.Collections;
 using System.Reflection.Mapping;
 
-namespace StoneKit.TransverseMapper.Tests.Mappings.Collections
+using Xunit;
+
+namespace UnitTests.Mappings.Collections
 {
     public sealed class CollectionMappingTests
     {

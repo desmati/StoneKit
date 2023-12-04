@@ -1,10 +1,11 @@
-﻿using StoneKit.TransverseMapper.MapperBuilder;
-using StoneKit.TransverseMapper.Mappers.Members;
+﻿using StoneKit.TransverseMapper;
+using StoneKit.TransverseMapper.Binding;
+using StoneKit.TransverseMapper.Mappers.Builder;
+using StoneKit.TransverseMapper.Mappers.Classes.Members;
 
 using System.Reflection;
-using System.Reflection.Mapping;
 
-namespace StoneKit.TransverseMapper.Tests
+namespace UnitTests
 {
     internal class MappingBuilderConfigStub : IMapperBuilderConfig
     {
@@ -19,7 +20,7 @@ namespace StoneKit.TransverseMapper.Tests
             _bindingConfig = bindingConfig.ToMaybe();
         }
 
-        public IDynamicAssembly Assembly => Transverse.Assembly;
+        public IDynamicAssembly Assembly => DynamicAssemblyBuilder.Get();
 
         public Func<string, string, bool> NameMatching => TargetMapperBuilder.DefaultNameMatching;
 
@@ -28,12 +29,12 @@ namespace StoneKit.TransverseMapper.Tests
             return _bindingConfig;
         }
 
-        public MapperBuilderBase GetMapperBuilder(TypePair typePair)
+        public MapperBuilder GetMapperBuilder(TypePair typePair)
         {
             throw new NotImplementedException();
         }
 
-        public MapperBuilderBase GetMapperBuilder(TypePair parentTypePair, MappingMember mappingMember)
+        public MapperBuilder GetMapperBuilder(TypePair parentTypePair, MappingMember mappingMember)
         {
             throw new NotImplementedException();
         }

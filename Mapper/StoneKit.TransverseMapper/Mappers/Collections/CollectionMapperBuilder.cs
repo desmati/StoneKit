@@ -1,6 +1,6 @@
-using StoneKit.TransverseMapper.Common.Cache;
-using StoneKit.TransverseMapper.MapperBuilder;
-using StoneKit.TransverseMapper.Mappers.Members;
+using StoneKit.TransverseMapper.Common.Caches;
+using StoneKit.TransverseMapper.Mappers.Builder;
+using StoneKit.TransverseMapper.Mappers.Classes.Members;
 
 using System.Collections;
 using System.Reflection;
@@ -9,9 +9,9 @@ using System.Reflection.Emit;
 namespace StoneKit.TransverseMapper.Mappers.Collections
 {
     /// <summary>
-    /// Builder for creating mappers for collection types.
+    /// Builds mappers for mapping collections from source to target.
     /// </summary>
-    internal sealed class CollectionMapperBuilder : MapperBuilderBase
+    internal sealed class CollectionMapperBuilder : MapperBuilder
     {
         private readonly MapperCache _mapperCache;
         private const string ConvertItemKeyMethod = "ConvertItemKey";
@@ -40,11 +40,11 @@ namespace StoneKit.TransverseMapper.Mappers.Collections
         protected override string ScopeName => "CollectionMappers";
 
         /// <summary>
-        /// Builds the core functionality of the collection mapper.
+        /// Builds a mapper for the specified type pair.
         /// </summary>
-        /// <param name="typePair">The type pair for the collection.</param>
+        /// <param name="typePair">The type pair.</param>
         /// <returns>The built mapper.</returns>
-        protected override MapperBase BuildCore(TypePair typePair)
+        protected override Mapper BuildCore(TypePair typePair)
         {
             Type parentType = typeof(CollectionMapper<,>).MakeGenericType(typePair.Source, typePair.Target);
             TypeBuilder typeBuilder = _assembly.DefineType(GetMapperFullName(), parentType);
@@ -68,7 +68,7 @@ namespace StoneKit.TransverseMapper.Mappers.Collections
                 EmitEnumerableToEnumerable(parentType, typeBuilder, typePair);
             }
 
-            var rootMapper = (MapperBase)Activator.CreateInstance(typeBuilder.CreateTypeInfo().AsType())!;
+            var rootMapper = (Mapper)Activator.CreateInstance(typeBuilder.CreateType());
 
             _mapperCache.ReplaceStub(typePair, rootMapper);
             rootMapper.AddMappers(_mapperCache.Mappers);
@@ -77,91 +77,60 @@ namespace StoneKit.TransverseMapper.Mappers.Collections
         }
 
         /// <summary>
-        /// Builds the core functionality of the collection mapper for mapping members.
+        /// Builds a mapper for the specified parent type pair and mapping member.
         /// </summary>
         /// <param name="parentTypePair">The parent type pair.</param>
         /// <param name="mappingMember">The mapping member.</param>
         /// <returns>The built mapper.</returns>
-        protected override MapperBase BuildCore(TypePair parentTypePair, MappingMember mappingMember)
+        protected override Mapper BuildCore(TypePair parentTypePair, MappingMember mappingMember)
         {
             return BuildCore(mappingMember.TypePair);
         }
 
         /// <summary>
-        /// Determines if the given type pair is supported for building a collection mapper.
+        /// Determines whether the specified type pair is supported for mapping.
         /// </summary>
         /// <param name="typePair">The type pair.</param>
-        /// <returns>True if supported; otherwise, false.</returns>
+        /// <returns><c>true</c> if the type pair is supported; otherwise, <c>false</c>.</returns>
         protected override bool IsSupportedCore(TypePair typePair)
         {
             return typePair.IsEnumerableTypes;
         }
 
-        /// <summary>
-        /// Determines if the type pair represents a dictionary to dictionary mapping.
-        /// </summary>
-        /// <param name="typePair">The type pair.</param>
-        /// <returns>True if dictionary to dictionary mapping; otherwise, false.</returns>
         private static bool IsDictionaryToDictionary(TypePair typePair)
         {
             return typePair.Source.IsDictionaryOf() && typePair.Target.IsDictionaryOf();
         }
 
-        /// <summary>
-        /// Determines if the type pair represents an IEnumerable to array mapping.
-        /// </summary>
-        /// <param name="typePair">The type pair.</param>
-        /// <returns>True if IEnumerable to array mapping; otherwise, false.</returns>
         private static bool IsIEnumerableToArray(TypePair typePair)
         {
             return typePair.Source.IsIEnumerable() && typePair.Target.IsArray;
         }
 
-        /// <summary>
-        /// Determines if the type pair represents an IEnumerable to list mapping.
-        /// </summary>
-        /// <param name="typePair">The type pair.</param>
-        /// <returns>True if IEnumerable to list mapping; otherwise, false.</returns>
         private static bool IsIEnumerableToList(TypePair typePair)
         {
             return typePair.Source.IsIEnumerable() && typePair.Target.IsListOf();
         }
 
-        /// <summary>
-        /// Determines if the type pair represents an IEnumerable to IEnumerable mapping.
-        /// </summary>
-        /// <param name="typePair">The type pair.</param>
-        /// <returns>True if IEnumerable to IEnumerable mapping; otherwise, false.</returns>
         private bool IsEnumerableToEnumerable(TypePair typePair)
         {
             return typePair.Source.IsIEnumerable() && typePair.Target.IsIEnumerable();
         }
 
-        /// <summary>
-        /// Creates a mapper cache item for the given type pair.
-        /// </summary>
-        /// <param name="typePair">The type pair.</param>
-        /// <returns>The mapper cache item.</returns>
         private MapperCacheItem CreateMapperCacheItem(TypePair typePair)
         {
-            var mapperCacheItemOption = _mapperCache.Get(typePair);
-            if (mapperCacheItemOption.HasValue)
+            var mapperCacheItemMaybe = _mapperCache.Get(typePair);
+            if (mapperCacheItemMaybe.HasValue)
             {
-                return mapperCacheItemOption.Value;
+                return mapperCacheItemMaybe.Value;
             }
 
-            MapperBuilderBase mapperBuilder = GetMapperBuilder(typePair);
-            MapperBase mapper = mapperBuilder.Build(typePair);
+            MapperBuilder mapperBuilder = GetMapperBuilder(typePair);
+            Mapper mapper = mapperBuilder.Build(typePair);
             MapperCacheItem mapperCacheItem = _mapperCache.Add(typePair, mapper);
             return mapperCacheItem;
         }
 
-        /// <summary>
-        /// Emits the conversion of an item using the specified method name.
-        /// </summary>
-        /// <param name="typeBuilder">The type builder.</param>
-        /// <param name="typePair">The type pair.</param>
-        /// <param name="methodName">The method name.</param>
         private void EmitConvertItem(TypeBuilder typeBuilder, TypePair typePair, string methodName = ConvertItemMethod)
         {
             MapperCacheItem mapperCacheItem = CreateMapperCacheItem(typePair);
@@ -176,25 +145,11 @@ namespace StoneKit.TransverseMapper.Mappers.Collections
             EmitReturn.Return(callMapMethod).Emit(new CodeGenerator(methodBuilder.GetILGenerator()));
         }
 
-        /// <summary>
-        /// Emits the dictionary to dictionary conversion.
-        /// </summary>
-        /// <param name="parentType">The parent type.</param>
-        /// <param name="typeBuilder">The type builder.</param>
-        /// <param name="typePair">The type pair.</param>
         private void EmitDictionaryToDictionary(Type parentType, TypeBuilder typeBuilder, TypePair typePair)
         {
             EmitDictionaryToTarget(parentType, typeBuilder, typePair, DictionaryToDictionaryMethod, DictionaryToDictionaryTemplateMethod);
         }
 
-        /// <summary>
-        /// Emits the dictionary to target conversion.
-        /// </summary>
-        /// <param name="parentType">The parent type.</param>
-        /// <param name="typeBuilder">The type builder.</param>
-        /// <param name="typePair">The type pair.</param>
-        /// <param name="methodName">The method name.</param>
-        /// <param name="templateMethodName">The template method name.</param>
         private void EmitDictionaryToTarget(
             Type parentType,
             TypeBuilder typeBuilder,
@@ -211,18 +166,12 @@ namespace StoneKit.TransverseMapper.Mappers.Collections
             EmitConvertItem(typeBuilder, new TypePair(sourceTypes.Value, targetTypes.Value));
 
             var arguments = new[] { sourceTypes.Key, sourceTypes.Value, targetTypes.Key, targetTypes.Value };
-            MethodInfo methodTemplate = parentType.GetGenericMethod(templateMethodName, arguments)!;
+            MethodInfo methodTemplate = parentType.GetGenericMethod(templateMethodName, arguments);
 
             IEmitterType returnValue = EmitMethod.Call(methodTemplate, EmitThis.Load(parentType), EmitArgument.Load(typeof(IEnumerable), 1));
             EmitReturn.Return(returnValue).Emit(new CodeGenerator(methodBuilder.GetILGenerator()));
         }
 
-        /// <summary>
-        /// Emits the IEnumerable to array conversion.
-        /// </summary>
-        /// <param name="parentType">The parent type.</param>
-        /// <param name="typeBuilder">The type builder.</param>
-        /// <param name="typePair">The type pair.</param>
         private void EmitEnumerableToArray(Type parentType, TypeBuilder typeBuilder, TypePair typePair)
         {
             var collectionItemTypePair = GetCollectionItemTypePair(typePair);
@@ -230,13 +179,6 @@ namespace StoneKit.TransverseMapper.Mappers.Collections
             EmitEnumerableToTarget(parentType, typeBuilder, typePair, collectionItemTypePair, EnumerableToArrayMethod, EnumerableToArrayTemplateMethod);
         }
 
-
-        /// <summary>
-        /// Emits the IEnumerable to list conversion.
-        /// </summary>
-        /// <param name="parentType">The parent type.</param>
-        /// <param name="typeBuilder">The type builder.</param>
-        /// <param name="typePair">The type pair.</param>
         private void EmitEnumerableToList(Type parentType, TypeBuilder typeBuilder, TypePair typePair)
         {
             var collectionItemTypePair = GetCollectionItemTypePair(typePair);
@@ -245,12 +187,6 @@ namespace StoneKit.TransverseMapper.Mappers.Collections
             EmitEnumerableToTarget(parentType, typeBuilder, typePair, collectionItemTypePair, EnumerableToListMethod, templateMethod);
         }
 
-        /// <summary>
-        /// Emits the IEnumerable to IEnumerable conversion.
-        /// </summary>
-        /// <param name="parentType">The parent type.</param>
-        /// <param name="typeBuilder">The type builder.</param>
-        /// <param name="typePair">The type pair.</param>
         private void EmitEnumerableToEnumerable(Type parentType, TypeBuilder typeBuilder, TypePair typePair)
         {
             var collectionItemTypePair = GetCollectionItemTypePair(typePair);
@@ -259,28 +195,14 @@ namespace StoneKit.TransverseMapper.Mappers.Collections
             EmitEnumerableToTarget(parentType, typeBuilder, typePair, collectionItemTypePair, EnumerableToListMethod, templateMethod);
         }
 
-        /// <summary>
-        /// Gets the collection item type pair.
-        /// </summary>
-        /// <param name="typePair">The type pair.</param>
-        /// <returns>The collection item type pair.</returns>
         private static TypePair GetCollectionItemTypePair(TypePair typePair)
         {
-            Type sourceItemType = typePair.Source.GetCollectionItemType()!;
-            Type targetItemType = typePair.Target.GetCollectionItemType()!;
+            Type sourceItemType = typePair.Source.GetCollectionItemType();
+            Type targetItemType = typePair.Target.GetCollectionItemType();
 
             return new TypePair(sourceItemType, targetItemType);
         }
 
-        /// <summary>
-        /// Emits the IEnumerable to target conversion.
-        /// </summary>
-        /// <param name="parentType">The parent type.</param>
-        /// <param name="typeBuilder">The type builder.</param>
-        /// <param name="typePair">The type pair.</param>
-        /// <param name="collectionItemTypePair">The collection item type pair.</param>
-        /// <param name="methodName">The method name.</param>
-        /// <param name="templateMethodName">The template method name.</param>
         private void EmitEnumerableToTarget(
             Type parentType,
             TypeBuilder typeBuilder,
@@ -293,12 +215,10 @@ namespace StoneKit.TransverseMapper.Mappers.Collections
 
             EmitConvertItem(typeBuilder, collectionItemTypePair);
 
-            MethodInfo methodTemplate = parentType.GetGenericMethod(templateMethodName, collectionItemTypePair.Target)!;
+            MethodInfo methodTemplate = parentType.GetGenericMethod(templateMethodName, collectionItemTypePair.Target);
 
             IEmitterType returnValue = EmitMethod.Call(methodTemplate, EmitThis.Load(parentType), EmitArgument.Load(typeof(IEnumerable), 1));
             EmitReturn.Return(returnValue).Emit(new CodeGenerator(methodBuilder.GetILGenerator()));
         }
     }
 }
-
-

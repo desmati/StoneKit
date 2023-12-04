@@ -1,10 +1,12 @@
 ﻿using System.Reflection.Mapping;
 
-namespace StoneKit.TransverseMapper.Tests.Mappings
+using Xunit;
+
+namespace UnitTests.Mappings
 {
     public sealed class PrimitiveTypeMappingTests
     {
-        public enum EnumA : int
+        public enum EnumA
         {
             A,
             B,
@@ -44,9 +46,7 @@ namespace StoneKit.TransverseMapper.Tests.Mappings
             {
                 Value = sourceValue
             };
-
             var result = Transverse.Map<Target4>(source);
-
             Assert.Equal(expectedValue, result.Value);
         }
 

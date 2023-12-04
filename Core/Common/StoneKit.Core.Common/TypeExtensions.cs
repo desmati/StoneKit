@@ -32,14 +32,6 @@ namespace System.Reflection
         }
 
         /// <summary>
-        /// Gets the default constructor of a type.
-        /// </summary>
-        public static ConstructorInfo? GetDefaultCtor(this Type type)
-        {
-            return type?.GetConstructor(Type.EmptyTypes);
-        }
-
-        /// <summary>
         /// Gets the key and value types of a dictionary type.
         /// </summary>
         public static KeyValuePair<Type, Type> GetDictionaryItemTypes(this Type type)

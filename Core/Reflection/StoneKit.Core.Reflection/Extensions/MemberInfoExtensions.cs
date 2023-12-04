@@ -52,6 +52,15 @@
             throw new NotSupportedException();
         }
 
+
+        /// <summary>
+        /// Gets the default constructor of a type.
+        /// </summary>
+        public static ConstructorInfo? GetDefaultCtor(this Type type)
+        {
+            return type?.GetConstructor(Type.EmptyTypes);
+        }
+
         /// <summary>
         /// Determines whether the member is a field.
         /// </summary>

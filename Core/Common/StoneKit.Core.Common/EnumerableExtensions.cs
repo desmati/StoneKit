@@ -4,13 +4,6 @@ namespace System
 {
     public static class EnumerableExtensions
     {
-        public static List<TResult> ConvertAll<TFrom, TResult>(
-            this IEnumerable<TFrom> value,
-            Func<TFrom, TResult> converter)
-        {
-            return value.Select(converter).ToList();
-        }
-
         public static int Count(this IEnumerable source)
         {
             var collection = source as ICollection;
