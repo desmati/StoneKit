@@ -6,9 +6,7 @@
 
 You can install by using NuGet:
 
-```bash
-nuget install StoneKit.Core.Common
-```
+	PM> Install-Package StoneKit.Core.Common
 
 ### Extension Methods:*
 ```

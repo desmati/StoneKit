@@ -1,55 +1,9 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
+	<Import Project="..\..\..\CommonProperties.targets" />
 	<PropertyGroup>
-		<TargetFramework>net8.0</TargetFramework>
-		<ImplicitUsings>enable</ImplicitUsings>
-		<Nullable>enable</Nullable>
-	</PropertyGroup>
-
-	<PropertyGroup>
-		<Authors>Hossein Esmati</Authors>
-		<Company>desmati.com</Company>
-		<Description>Maybe option monad is a generic struct designed to represent optional values in C#</Description>
-		<PackageIconUrl>https://gravatar.com/avatar/8b4129dc040fc60683eb3f1f7ea1931f754f3c71289f8fbe8b2d98c943a694dc</PackageIconUrl>
-		<PackageTags>Maybe;Monad;Option;Option Monad;Maybe Monad</PackageTags>
-		<RepositoryType>git</RepositoryType>
-		<RepositoryUrl>https://github.com/desmati/StoneKit</RepositoryUrl>
-		<PackageProjectUrl>http://desmati.com/</PackageProjectUrl>
-		<IncludeSymbols>false</IncludeSymbols>
-		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
 		<Title>Maybe Option Monad Struct</Title>
-		<Copyright>https://github.com/desmati/StoneKit/blob/master/LICENSE</Copyright>
-		<PackageIcon>logo.png</PackageIcon>
-		<PackageReadmeFile>README.md</PackageReadmeFile>
-		<PackageLicenseFile>LICENSE</PackageLicenseFile>
-		<PackageOutputPath>..\..\..\Assets\Packages\$(AssemblyName)</PackageOutputPath>
+		<Description>Maybe option monad is a generic struct designed to represent optional values in C#</Description>
+		<PackageTags>Maybe;Monad;Option;Option Monad;Maybe Monad</PackageTags>
 	</PropertyGroup>
 
-	<PropertyGroup>
-		<GenerateNuspecDependsOn>$(GenerateNuspecDependsOn);SetPackageVersion</GenerateNuspecDependsOn>
-	</PropertyGroup>
-
-	<Target Name="SetPackageVersion" DependsOnTargets="Build">
-		<PropertyGroup>
-			<PackageVersion>$([System.DateTime]::Now.ToString("1.yy.MMdd.HHmmss"))</PackageVersion>
-			<AssemblyVersion>$([System.DateTime]::Now.ToString("1.yy.MMdd.HHmmss"))</AssemblyVersion>
-			<Version>$([System.DateTime]::Now.ToString("1.yy.MMdd.HHmmss"))</Version>
-			<FileVersion>$([System.DateTime]::Now.ToString("1.yy.MMdd.HHmmss"))</FileVersion>
-		</PropertyGroup>
-	</Target>
-
-	<ItemGroup>
-	  <None Include="..\..\..\Assets\logo.png">
-	    <Pack>True</Pack>
-	    <PackagePath>\</PackagePath>
-	  </None>
-	  <None Include="..\..\..\LICENSE">
-	    <Pack>True</Pack>
-	    <PackagePath>\</PackagePath>
-	  </None>
-	  <None Update="README.md">
-	    <Pack>True</Pack>
-	    <PackagePath>\</PackagePath>
-	  </None>
-	</ItemGroup>
 </Project>

@@ -1,46 +1,5 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
+	<Import Project="..\..\..\CommonProperties.targets" />
 
-  <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-  </PropertyGroup>
-
-	<!--<PropertyGroup>
-		<Authors>Hossein Esmati</Authors>
-		<Company>desmati.com</Company>
-		<Description>Represents a pair of types used for object mapping and type conversion</Description>
-		<PackageIconUrl>https://gravatar.com/avatar/8b4129dc040fc60683eb3f1f7ea1931f754f3c71289f8fbe8b2d98c943a694dc</PackageIconUrl>
-		<PackageTags>TypePair;Tupple;Mapping</PackageTags>
-		<RepositoryType>git</RepositoryType>
-		<RepositoryUrl>https://github.com/desmati/StoneKit</RepositoryUrl>
-		<PackageProjectUrl>http://desmati.com/</PackageProjectUrl>
-		<IncludeSymbols>false</IncludeSymbols>
-		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-		<Title>Type Pair</Title>
-		<Copyright>https://github.com/desmati/StoneKit/blob/master/LICENSE</Copyright>
-		<PackageIcon>logo.png</PackageIcon>
-		<PackageReadmeFile>README.md</PackageReadmeFile>
-		<PackageLicenseFile>LICENSE</PackageLicenseFile>
-		<PackageOutputPath>..\..\..\Assets\Packages\$(AssemblyName)</PackageOutputPath>
-	</PropertyGroup>-->
-
-	<ItemGroup>
-    <None Include="..\..\..\Assets\logo.png" Link="logo.png">
-      <PackagePath>\</PackagePath>
-      <Pack>True</Pack>
-    </None>
-    <None Include="..\..\..\LICENSE" Link="LICENSE">
-      <PackagePath>\</PackagePath>
-      <Pack>True</Pack>
-    </None>
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Update="README.md">
-      <PackagePath>\</PackagePath>
-      <Pack>True</Pack>
-    </None>
-  </ItemGroup>
 
 </Project>

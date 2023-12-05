@@ -7,10 +7,7 @@ The `TypePair` struct represents a pair of types, commonly used for object mappi
 
 You can install by using NuGet:
 
-```bash
-nuget install StoneKit.Core.Structs.TypePair
-```
-
+    PM> Install-Package StoneKit.Core.Structs.TypePair
 
 ## Usage
 

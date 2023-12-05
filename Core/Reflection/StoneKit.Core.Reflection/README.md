@@ -10,9 +10,7 @@ This comprehensive library provides advanced tools for interacting with IL and l
 
 You can install it using NuGet:
 
-```bash
-nuget install StoneKit.Core.Reflection
-```
+	PM> Install-Package StoneKit.Core.Reflection
 
 ## Usage
 

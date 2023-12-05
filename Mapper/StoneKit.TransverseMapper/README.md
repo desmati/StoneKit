@@ -12,6 +12,13 @@ Inspired by AutoMapper and TinyMapper, I'm trying to create a library named Ston
 
 Right now it performs faster than AutoMapper and I'm trying to improve it constantly. There is a benchmark project in the source code that I'm developing to showcase the performance.
 
+| Method                           | Mean      | Error      | StdDev    | Median    |
+|----------------------------------|-----------|------------|-----------|-----------|
+| CollectionMapping_AutoMapper     | 2.061 탎  | 0.0405 탎  | 0.0433 탎 | 2.055 탎  |
+| CollectionMapping_Transverse     | 1.802 탎  | 0.0649 탎  | 0.1872 탎 | 1.722 탎  |
+| CollectionMapping_Handwritten    | 1.474 탎  | 0.0379 탎  | 0.1075 탎 | 1.459 탎  |
+
+
 ## Installation
 
 Available on [nuget](https://www.nuget.org/packages/StoneKit.TransverseMapper/)

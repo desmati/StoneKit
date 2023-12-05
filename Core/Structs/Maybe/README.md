@@ -17,10 +17,7 @@ For a comprehensive understanding of the Maybe Monad, you can refer to the [Plur
 
 You can install by using NuGet:
 
-```bash
-nuget install StoneKit.Core.Strcuts.Maybe
-```
-
+    PM> Install-Package StoneKit.Core.Strcuts.Maybe
 
 ## Usage
 

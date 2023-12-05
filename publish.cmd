@@ -1,4 +1,7 @@
 cls
+
+dotnet build StoneKit.sln --configuration Release
+
 @echo off
 
 REM Set the NuGet API key from environment variable
