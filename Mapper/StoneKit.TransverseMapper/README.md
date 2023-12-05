@@ -1,5 +1,7 @@
 Transverse - a quick object mapper for .Net
 ======================================================
+I'll publish the source code very soon on github.
+
 [![Nuget downloads](https://img.shields.io/nuget/v/tinymapper.svg)](https://www.nuget.org/packages/StoneKit.TransverseMapper/)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
