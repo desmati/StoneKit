@@ -1,14 +1,13 @@
 # StoneKit.Configuration.IniParser
 
-A simple and efficient INI file parser for .NET 8+
+`StoneKit.Configuration.IniParser` not only simplifies the parsing of INI files but also offers additional features, including the ability to read and write objects. This library is designed to make working with configuration data in INI files more versatile and convenient.
 
 [![NuGet Version](https://img.shields.io/nuget/v/StoneKit.Configuration.IniParser.svg)](https://www.nuget.org/packages/StoneKit.Configuration.IniParser/)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
 ## Overview
 
-`StoneKit.Configuration.IniParser` is a lightweight library for parsing INI files in .NET 8+ applications. 
-It allows you to read and manipulate configuration settings stored in INI files with ease.
+In addition to basic INI file parsing, `StoneKit.Configuration.IniParser` provides advanced features for handling objects. This includes reading objects from INI files and writing object properties back to INI sections. The library automatically manages the serialization and deserialization of object properties, simplifying the configuration process.
 
 ## Installation
 
@@ -45,6 +44,29 @@ string[] sections = iniFile.Sections;
 
 // Get an array of key names in a specific section
 string[] keysInSection = iniFile.GetKeys("SectionName");
+```
+
+### Reading and Writing Objects
+
+```csharp
+// Define a sample configuration class
+public class AppConfig
+{
+    public string Server { get; set; }
+    public int Port { get; set; }
+    public string DatabaseName { get; set; }
+    // ... other properties
+}
+
+// Load an instance of AppConfig from the INI file
+AppConfig config = iniFile.Load<AppConfig>("Database");
+
+// Modify the object
+config.Server = "newServer";
+config.Port = 8080;
+
+// Save the modified object back to the INI file
+iniFile.Save(config);
 ```
 
 ### Example INI File
