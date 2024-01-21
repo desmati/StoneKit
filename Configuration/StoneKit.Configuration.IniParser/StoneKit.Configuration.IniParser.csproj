@@ -1,0 +1,8 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+	<Import Project="..\..\CommonProperties.targets" />
+	<PropertyGroup>
+		<Title>StoneKit.Configuration.IniParser</Title>
+		<Description>A tiny .net 8, multi-thread safe and fast INI file parser.</Description>
+		<PackageTags>IniParser;Configuration;StoneKit;IniReader;ini parser;ini reader;ini file</PackageTags>
+	</PropertyGroup>
+</Project>

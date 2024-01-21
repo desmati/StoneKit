@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "StoneKit.Utilities.CleanUp": {
+      "commandName": "Project",
+      "commandLineArgs": ""
+    }
+  }
+}
