@@ -16,6 +16,9 @@ if not defined ApiKey (
 for /R ".\Assets\Packages\" %%A in ("StoneKit.Core.Structs.Maybe.*.nupkg") do (set LatestPackage=%%A)
 "./Assets/nuget.exe" push %LatestPackage% -Source https://api.nuget.org/v3/index.json -ApiKey %ApiKey%
 
+for /R ".\Assets\Packages\" %%A in ("StoneKit.Core.Structs.DateRange.*.nupkg") do (set LatestPackage=%%A)
+"./Assets/nuget.exe" push %LatestPackage% -Source https://api.nuget.org/v3/index.json -ApiKey %ApiKey%
+
 for /R ".\Assets\Packages\" %%A in ("StoneKit.Core.Common.*.nupkg") do (set LatestPackage=%%A)
 "./Assets/nuget.exe" push %LatestPackage% -Source https://api.nuget.org/v3/index.json -ApiKey %ApiKey%
 

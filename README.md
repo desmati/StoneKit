@@ -77,3 +77,17 @@ PM> Install-Package StoneKit.Core.Structs.TypePair
 [Usage and More Details](Core/Structs/StoneKit.Core.Structs.TypePair/README.md)
 
 This `TypePair` struct represents a pair of types, commonly used for object mapping and type conversion.
+
+## 6. StoneKit Core Structs
+
+### DateRange Struct
+
+#### Installation
+
+```bash
+PM> Install-Package StoneKit.Core.Structs.DateRange
+```
+
+[Usage and More Details](Core/Structs/StoneKit.Core.Structs.DateRange/README.md)
+
+Represents a range of dates, allowing checks for inclusion of a date within the range. This lightweight struct provides various functionalities such as checking for inclusion, calculating duration, checking for overlaps, and more. It is a versatile tool for managing date ranges efficiently in your applications.

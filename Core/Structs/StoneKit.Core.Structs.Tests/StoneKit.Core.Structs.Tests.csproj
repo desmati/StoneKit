@@ -23,6 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\DateRange\StoneKit.Core.Structs.DateRange.csproj" />
     <ProjectReference Include="..\Maybe\StoneKit.Core.Structs.Maybe.csproj" />
     <ProjectReference Include="..\StoneKit.Core.Structs.TypePair\StoneKit.Core.Structs.TypePair.csproj" />
   </ItemGroup>
