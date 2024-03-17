@@ -160,5 +160,25 @@ namespace System
         {
             return range.Duration().TotalMilliseconds;
         }
+
+        public static bool HasStartDate(this DateRange? dateRange)
+        {
+            return dateRange?.StartDate.HasValue == true;
+        }
+
+        public static bool HasEndDate(this DateRange? dateRange)
+        {
+            return dateRange?.EndDate.HasValue == true;
+        }
+
+        public static bool HasStartDate(this DateRange dateRange)
+        {
+            return dateRange.StartDate.HasValue;
+        }
+
+        public static bool HasEndDate(this DateRange dateRange)
+        {
+            return dateRange.EndDate.HasValue;
+        }
     }
 }

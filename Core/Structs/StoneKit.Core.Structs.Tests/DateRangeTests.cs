@@ -40,6 +40,18 @@ namespace StoneKit.Core.Structs.Tests
                 range.Contains(new DateTime(2022, 1, 15));
             });
         }
+        
+        [Fact]
+        public void HasValue_ReturnFalse()
+        {
+            var range = new DateRange(new DateTime(2022, 1, 1));
+            Assert.True(range.HasStartDate());
+            Assert.False(range.HasEndDate());
+
+            DateRange? range2 = new DateRange(new DateTime(2022, 1, 1));
+            Assert.True(range2.HasStartDate());
+            Assert.False(range2.HasEndDate());
+        }
 
         [Fact]
         public void Contains_DateWithinRangeWithoutEndDate_ReturnsTrue()
