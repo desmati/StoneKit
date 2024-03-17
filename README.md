@@ -2,7 +2,7 @@
 
 # StoneKit - DotNet 8 Toolset
 
-StoneKit is a comprehensive dotnet toolset consisting of various libraries and utilities to enhance and simplify common tasks in .NET development. Below are the key components of StoneKit:
+StoneKit is a comprehensive dotnet toolset consisting of various libraries and utilities to enhance and simplify common tasks in .NET development with over than 11k package download (20240310). Below are the key components of StoneKit:
 
 ## 1. Transverse - Quick Tiny Object Mapper
 
@@ -20,9 +20,9 @@ Right now, it performs faster than AutoMapper, and improvements are made constan
 
 | Method                           | Mean      | Error      | StdDev    | Median    |
 |----------------------------------|-----------|------------|-----------|-----------|
-| CollectionMapping_AutoMapper     | 2.061 µs  | 0.0405 µs  | 0.0433 µs | 2.055 µs  |
-| CollectionMapping_Transverse     | 1.802 µs  | 0.0649 µs  | 0.1872 µs | 1.722 µs  |
-| CollectionMapping_Handwritten    | 1.474 µs  | 0.0379 µs  | 0.1075 µs | 1.459 µs  |
+| CollectionMapping_AutoMapper     | 2.061 Âµs  | 0.0405 Âµs  | 0.0433 Âµs | 2.055 Âµs  |
+| CollectionMapping_Transverse     | 1.802 Âµs  | 0.0649 Âµs  | 0.1872 Âµs | 1.722 Âµs  |
+| CollectionMapping_Handwritten    | 1.474 Âµs  | 0.0379 Âµs  | 0.1075 Âµs | 1.459 Âµs  |
 
 ## 2. StoneKit Advanced Reflection Tools
 
