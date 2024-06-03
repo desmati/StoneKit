@@ -9,7 +9,8 @@ set ApiKey=%NUGET_API_KEY%
 
 REM Check if the API key is empty
 if not defined ApiKey (
-    echo API key not set. Please set the NUGET_API_KEY environment variable.
+    cls
+    echo API key not set. Please set the NUGET_API_KEY environment variable and restart the terminal.
     exit /b 1
 )
 
@@ -32,6 +33,9 @@ for /R ".\Assets\Packages\" %%A in ("StoneKit.TransverseMapper.*.nupkg") do (set
 "./Assets/nuget.exe" push %LatestPackage% -Source https://api.nuget.org/v3/index.json -ApiKey %ApiKey%
 
 for /R ".\Assets\Packages\" %%A in ("StoneKit.Configuration.InIParser.*.nupkg") do (set LatestPackage=%%A)
+"./Assets/nuget.exe" push %LatestPackage% -Source https://api.nuget.org/v3/index.json -ApiKey %ApiKey%
+
+for /R ".\Assets\Packages\" %%A in ("StoneKit.Core.Structs.Age.*.nupkg") do (set LatestPackage=%%A)
 "./Assets/nuget.exe" push %LatestPackage% -Source https://api.nuget.org/v3/index.json -ApiKey %ApiKey%
 
 pause

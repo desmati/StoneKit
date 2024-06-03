@@ -1,0 +1,14 @@
+﻿<Project>
+	<Import Project="..\..\..\CommonProperties.targets" />
+	<PropertyGroup>
+		<Title>Age Struct</Title>
+		<Description>
+			Age Struct is a lightweight C# library that provides a struct representing age in years and days, 
+			along with extension methods for calculating and determining age based on given dates. 
+			This library simplifies age-related operations, making it easy to classify ages into infants, children, and adults.
+		</Description>
+		<PackageTags>
+			Age;StoneKit;C#;.NET;Age Calculation;DateTime Extensions;Struct;NuGet Package;Utility Library;Age Struct;
+		</PackageTags>
+	</PropertyGroup>
+</Project>

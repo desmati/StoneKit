@@ -10,6 +10,13 @@ You can install by using NuGet:
 
 ### Extension Methods:*
 ```
+Enumerable:
+int Count(this IEnumerable source)
+bool IsNullOrEmpty<T>(this IEnumerable<T> value)
+void Iter<T>(this IEnumerable<T> value, Action<T> action) // Apply the given function to each element of the collection
+void IterSafe<T>(this IEnumerable<T> value, Action<T> action, Action<Exception> exceptionHandler = null!)
+
+
 bool IsNotNull(this object obj)
 bool IsNull(this object obj)
 Type CreateType(TypeBuilder typeBuilder)
@@ -24,7 +31,9 @@ bool IsIEnumerableOf(this Type type)
 bool IsListOf(this Type type)
 bool IsNullable(this Type type)
 
-TValue? GetValue<TKey, TValue>(this IDictionary<TKey, TValue> value, TKey key)
+Dictionary:
+TValue? GetOrDefault<TKey, TValue>(this IDictionary<TKey, TValue> value, TKey key)
+void TryAdd<TKey, TValue>(this Dictionary<TKey, TValue>? dictionary, Dictionary<TKey, TValue>? itemsToAdd)
 
 
 ```

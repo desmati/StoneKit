@@ -1,0 +1,39 @@
+﻿<Project>
+	<Import Project="..\..\CommonProperties.targets" />
+	<PropertyGroup>
+		<Title>StoneKit Infrastructure</Title>
+		<Description>
+			StoneKit Infrastructure is a comprehensive boilerplate for starting new ASP.NET Core 8 API projects.
+			It integrates essential libraries and services, including FluentValidation, Serilog logging, hashing, HttpClient, OpenAPI documentation, and more, to streamline the setup and development process.
+		</Description>
+		<PackageTags>
+			dotnet;ASP.NET Core;FluentValidation;Serilog;OpenAPI;Swagger;Hashing;HttpClient;Middleware;SignalR;Boilerplate;CORS;StoneKit;
+		</PackageTags>
+	</PropertyGroup>
+	<ItemGroup>
+		<PackageReference Include="Microsoft.Data.SqlClient" Version="5.2.1" />
+		<PackageReference Include="StoneKit.TransverseMapper" Version="1.24.317.170732" />
+		<PackageReference Include="FluentValidation" Version="11.9.1" />
+		<PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="8.0.6" />
+		<PackageReference Include="Microsoft.Extensions.Caching.StackExchangeRedis" Version="8.0.6" />
+		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.0" />
+		<PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="8.0.1" />
+		<PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="8.0.0" />
+		<PackageReference Include="Serilog.AspNetCore" Version="8.0.1" />
+		<PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
+		<PackageReference Include="NWebsec.AspNetCore.Core" Version="3.0.1" />
+		<PackageReference Include="NWebsec.AspNetCore.Middleware" Version="3.0.0" />
+		<PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="6.6.2" />
+		<PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
+		<PackageReference Include="Swashbuckle.AspNetCore.Filters" Version="8.0.2" />
+
+		<PackageReference Include="JetBrains.Annotations" Version="2023.3.0" />
+		<PackageReference Include="Microsoft.OpenApi" Version="1.6.14" />
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+		<PackageReference Include="Serilog" Version="4.0.0" />
+		<PackageReference Include="Swashbuckle.AspNetCore.Swagger" Version="6.6.2" />
+		<PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="6.6.2" />
+	</ItemGroup>
+
+
+</Project>
