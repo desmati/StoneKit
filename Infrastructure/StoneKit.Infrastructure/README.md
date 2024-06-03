@@ -57,7 +57,6 @@ PM> Install-Package StoneKit.Infrastructure
 
    ```csharp
    using Microsoft.Extensions.Configuration;
-   using StoneKit.Infrastructure;
 
    var builder = WebApplication.CreateBuilder(args);
 
