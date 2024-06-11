@@ -1,13 +1,8 @@
 ﻿namespace Trustee.Client;
 
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Logging;
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 using Trustee.Subscribers;
 
@@ -19,12 +14,12 @@ internal class RemoteConfigurationSource : IConfigurationSource
     /// <summary>
     /// Gets or sets the configuration service endpoint.
     /// </summary>
-    public string ConfigurationServiceUri { get; set; }
+    public required string ConfigurationServiceUri { get; set; }
 
     /// <summary>
     /// Gets or sets the name or path of the configuration file relative to the configuration provider path.
     /// </summary>
-    public string ConfigurationName { get; set; }
+    public required string ConfigurationName { get; set; }
 
     /// <summary>
     /// Gets or sets a value indicating whether loading the file is optional. Defaults to false.
@@ -39,7 +34,7 @@ internal class RemoteConfigurationSource : IConfigurationSource
     /// <summary>
     /// Gets or sets the <see cref="System.Net.Http.HttpMessageHandler"/> for the <see cref="HttpClient"/>.
     /// </summary>
-    public HttpMessageHandler HttpMessageHandler { get; set; }
+    public HttpMessageHandler? HttpMessageHandler { get; set; }
 
     /// <summary>
     /// Gets or sets the timeout for the <see cref="HttpClient"/> request to the configuration server.
@@ -49,12 +44,12 @@ internal class RemoteConfigurationSource : IConfigurationSource
     /// <summary>
     /// Gets or sets the type of <see cref="IConfigurationParser"/> used to parse the remote configuration file.
     /// </summary>
-    public IConfigurationParser Parser { get; set; }
+    public IConfigurationParser? Parser { get; set; }
 
     /// <summary>
     /// Gets or sets the delegate to create the type of <see cref="ISubscriber"/> used to subscribe to published configuration messages.
     /// </summary>
-    public Func<ISubscriber> CreateSubscriber { get; set; }
+    public Func<ISubscriber>? CreateSubscriber { get; set; }
 
     /// <summary>
     /// Builds the <see cref="IConfigurationProvider"/> for this <see cref="RemoteConfigurationSource"/>.

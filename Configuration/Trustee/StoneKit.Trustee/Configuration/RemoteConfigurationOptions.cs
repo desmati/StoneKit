@@ -16,17 +16,17 @@ public class RemoteConfigurationOptions
 {
     internal IList<ConfigurationOptions> Configurations { get; } = new List<ConfigurationOptions>();
 
-    internal Func<ISubscriber> CreateSubscriber { get; set; }
+    internal Func<ISubscriber>? CreateSubscriber { get; set; }
 
     /// <summary>
     /// Gets or sets the configuration service endpoint.
     /// </summary>
-    public string ServiceUri { get; set; }
+    public required string ServiceUri { get; set; }
 
     /// <summary>
     /// Gets or sets the <see cref="System.Net.Http.HttpMessageHandler"/> for the <see cref="HttpClient"/>.
     /// </summary>
-    public HttpMessageHandler HttpMessageHandler { get; set; }
+    public HttpMessageHandler? HttpMessageHandler { get; set; }
 
     /// <summary>
     /// Gets or sets the timeout for the <see cref="HttpClient"/> request to the configuration server.
@@ -39,7 +39,7 @@ public class RemoteConfigurationOptions
     /// <param name="configure">Action to configure the options for the configuration file.</param>
     public void AddConfiguration(Action<ConfigurationOptions> configure)
     {
-        var configurationOptions = new ConfigurationOptions();
+        var configurationOptions = new ConfigurationOptions() { ConfigurationName = "" };
         configure(configurationOptions);
 
         Configurations.Add(configurationOptions);

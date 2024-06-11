@@ -67,20 +67,29 @@ public class RedisSubscriber : ISubscriber
     /// </summary>
     /// <param name="topic">The topic to subscribe to.</param>
     /// <param name="handler">The action to handle incoming messages.</param>
-    public void Subscribe(string topic, Action<string> handler)
+    public void Subscribe(string? topic, Action<string>? handler)
     {
+        if (string.IsNullOrEmpty(topic))
+        {
+            throw new ArgumentNullException(nameof(topic));
+        }
         Log.Information("Subscribing to Redis channel '{Channel}'", topic);
+
+        var channel = new RedisChannel(topic, RedisChannel.PatternMode.Literal);
 
         var subscriber = _connection?.GetSubscriber();
 
-        subscriber?.Subscribe(topic, (redisChannel, value) =>
+        subscriber?.Subscribe(channel, (redisChannel, value) =>
         {
             Log.Information("Received subscription on Redis channel '{Channel}'", topic);
 
-            handler(value);
+            if (handler != null && value.HasValue)
+            {
+                handler(value!);
+            }
         });
 
-        var endpoint = subscriber?.SubscribedEndpoint(topic);
+        var endpoint = subscriber?.SubscribedEndpoint(channel);
         Log.Information("Subscribed to Redis endpoint {Endpoint} for channel '{Channel}'", endpoint, topic);
     }
 }

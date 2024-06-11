@@ -30,7 +30,7 @@ public static class RemoteConfigurationExtensions
             throw new ArgumentNullException(nameof(configure));
         }
 
-        var options = new RemoteConfigurationOptions();
+        var options = new RemoteConfigurationOptions() { ServiceUri = "" };
         configure(options);
 
         var remoteBuilder = new RemoteConfigurationBuilder(builder, options);

@@ -73,7 +73,9 @@ public class RedisPublisher : IPublisher
 
         var publisher = _connection.GetSubscriber();
 
-        var clientCount = await publisher.PublishAsync(topic, message);
+        var channel = new RedisChannel(topic, RedisChannel.PatternMode.Literal);
+
+        var clientCount = await publisher.PublishAsync(channel, message);
 
         _logger.LogInformation("Message to channel {Channel} was received by {ClientCount} clients", topic, clientCount);
     }

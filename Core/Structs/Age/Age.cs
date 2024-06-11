@@ -43,7 +43,7 @@
         public static bool operator >(Age a, Age b) => a.Years > b.Years || (a.Years == b.Years && a.Days > b.Days);
         public static bool operator <(Age a, Age b) => a.Years < b.Years || (a.Years == b.Years && a.Days < b.Days);
 
-        public override bool Equals(object obj) => obj is Age age && this == age;
+        public override bool Equals(object? obj) => obj is Age age && this == age;
 
         public override int GetHashCode() => HashCode.Combine(Years, Days);
     }

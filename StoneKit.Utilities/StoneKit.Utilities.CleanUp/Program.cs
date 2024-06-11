@@ -63,7 +63,18 @@ var projectFiles = Directory.GetFiles(rootDirectory, "*.csproj", SearchOption.Al
 // Iterate through project files and perform cleanup
 foreach (var projectFile in projectFiles)
 {
-    string projectDirectory = Path.GetDirectoryName(projectFile);
+    if (string.IsNullOrEmpty(projectFile))
+    {
+        continue;
+    }
+
+    var projectDirectory = Path.GetDirectoryName(projectFile);
+    if (string.IsNullOrEmpty(projectDirectory))
+    {
+        continue;
+    }
+
+
     string dotVsPath = Path.Combine(projectDirectory, ".vs");
     string binPath = Path.Combine(projectDirectory, "bin");
     string objPath = Path.Combine(projectDirectory, "obj");

@@ -18,7 +18,7 @@ public class NatsPublisher : IPublisher
     private readonly ILogger<NatsPublisher> _logger;
 
     private readonly Options _options;
-    private static IConnection _connection;
+    private static IConnection? _connection;
 
     /// <summary>
     /// Initializes a new instance of the <see cref="NatsPublisher"/> class.
@@ -63,7 +63,7 @@ public class NatsPublisher : IPublisher
         _logger.LogInformation("Publishing message to NATS with subject {Subject}", topic);
 
         var data = Encoding.UTF8.GetBytes(message);
-        _connection.Publish(topic, data);
+        _connection?.Publish(topic, data);
 
         return Task.CompletedTask;
     }

@@ -8,7 +8,6 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="StoneKit.Core.Common" Version="1.24.317.170729" />
+	  <ProjectReference Include="..\..\Common\StoneKit.Core.Common\StoneKit.Core.Common.csproj" />
 	</ItemGroup>
-
 </Project>

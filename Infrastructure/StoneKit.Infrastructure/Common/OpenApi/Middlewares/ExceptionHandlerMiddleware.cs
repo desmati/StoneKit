@@ -67,7 +67,7 @@ namespace Microsoft.Extensions.Configuration
                             httpContext.Response.StatusCode = 200; //Ok    
                         }
 
-                        operationResult.ResponseInfo.ErrorCode = apiException.ErrorCode?.ToString();
+                        operationResult.ResponseInfo.ErrorCode = apiException?.ErrorCode?.ToString() ?? "NONE";
                     }
                     else
                     {

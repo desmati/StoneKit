@@ -29,7 +29,7 @@ namespace UnitTests.Snippets
     {
         void Bind<TSource, TTarget>();
         void Bind<TSource, TTarget>(Action<IBindingConfig<TSource, TTarget>> config);
-        TTarget Map<TSource, TTarget>(TSource source, TTarget target = default(TTarget));
+        TTarget Map<TSource, TTarget>(TSource source, TTarget target = default);
         TTarget Map<TTarget>(object source);
     }
 }

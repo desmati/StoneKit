@@ -58,7 +58,7 @@ public static partial class ConfigurationEndpointRouteBuilderExtensions
 
         return endpointRouteBuilder.MapGet(pattern, async context =>
         {
-            var files = await provider.ListPaths();
+            var files = await provider!.ListPaths();
 
             context.Response.OnStarting(async () =>
             {
@@ -82,7 +82,7 @@ public static partial class ConfigurationEndpointRouteBuilderExtensions
             var name = context.GetRouteValue("name")?.ToString();
             name = WebUtility.UrlDecode(name);
 
-            var bytes = await provider.GetConfiguration(name);
+            var bytes = await provider!.GetConfiguration(name!);
 
             if (bytes == null)
             {

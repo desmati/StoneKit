@@ -41,4 +41,31 @@ for /R ".\Assets\Packages\" %%A in ("StoneKit.Core.Structs.Age.*.nupkg") do (set
 for /R ".\Assets\Packages\" %%A in ("StoneKit.Infrastructure.*.nupkg") do (set LatestPackage=%%A)
 "./Assets/nuget.exe" push %LatestPackage% -Source https://api.nuget.org/v3/index.json -ApiKey %ApiKey%
 
+for /R ".\Assets\Packages\StoneKit.Trustee" %%A in ("StoneKit.Trustee.*.nupkg") do (set LatestPackage=%%A)
+"./Assets/nuget.exe" push %LatestPackage% -Source https://api.nuget.org/v3/index.json -ApiKey %ApiKey%
+
+for /R ".\Assets\Packages\StoneKit.Trustee.Host" %%A in ("StoneKit.Trustee.Host.*.nupkg") do (set LatestPackage=%%A)
+"./Assets/nuget.exe" push %LatestPackage% -Source https://api.nuget.org/v3/index.json -ApiKey %ApiKey%
+
+for /R ".\Assets\Packages\StoneKit.Trustee.Providers.AzureKeyVault" %%A in ("StoneKit.Trustee.Providers.AzureKeyVault.*.nupkg") do (set LatestPackage=%%A)
+"./Assets/nuget.exe" push %LatestPackage% -Source https://api.nuget.org/v3/index.json -ApiKey %ApiKey%
+
+for /R ".\Assets\Packages\StoneKit.Trustee.Providers.FileSystem" %%A in ("StoneKit.Trustee.Providers.FileSystem.*.nupkg") do (set LatestPackage=%%A)
+"./Assets/nuget.exe" push %LatestPackage% -Source https://api.nuget.org/v3/index.json -ApiKey %ApiKey%
+
+for /R ".\Assets\Packages\StoneKit.Trustee.Providers.Git" %%A in ("StoneKit.Trustee.Providers.Git.*.nupkg") do (set LatestPackage=%%A)
+"./Assets/nuget.exe" push %LatestPackage% -Source https://api.nuget.org/v3/index.json -ApiKey %ApiKey%
+
+for /R ".\Assets\Packages\StoneKit.Trustee.Providers.HashicorpVault" %%A in ("StoneKit.Trustee.Providers.HashicorpVault.*.nupkg") do (set LatestPackage=%%A)
+"./Assets/nuget.exe" push %LatestPackage% -Source https://api.nuget.org/v3/index.json -ApiKey %ApiKey%
+
+for /R ".\Assets\Packages\StoneKit.Trustee.Publishers.Nat" %%A in ("StoneKit.Trustee.Publishers.Nat.*.nupkg") do (set LatestPackage=%%A)
+"./Assets/nuget.exe" push %LatestPackage% -Source https://api.nuget.org/v3/index.json -ApiKey %ApiKey%
+
+for /R ".\Assets\Packages\StoneKit.Trustee.Publishers.RabbitMq" %%A in ("StoneKit.Trustee.Publishers.RabbitMq.*.nupkg") do (set LatestPackage=%%A)
+"./Assets/nuget.exe" push %LatestPackage% -Source https://api.nuget.org/v3/index.json -ApiKey %ApiKey%
+
+for /R ".\Assets\Packages\StoneKit.Trustee.Publishers.Redis" %%A in ("StoneKit.Trustee.Publishers.Redis.*.nupkg") do (set LatestPackage=%%A)
+"./Assets/nuget.exe" push %LatestPackage% -Source https://api.nuget.org/v3/index.json -ApiKey %ApiKey%
+
 pause

@@ -154,7 +154,8 @@ namespace Trustee.Providers
             var paths = secrets.Select(s => s.Name).ToList();
 
             Log.Information("{Count} paths found", paths.Count);
-            return paths;
+
+            return await Task.FromResult(paths);
         }
     }
 

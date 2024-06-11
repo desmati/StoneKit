@@ -8,7 +8,7 @@ public class AzureKeyVaultProviderOptions
     /// <summary>
     /// Gets or sets the URI of the Azure Key Vault.
     /// </summary>
-    public string VaultUri { get; set; }
+    public required string VaultUri { get; set; }
 
     /// <summary>
     /// Gets or sets the interval for polling the Azure Key Vault for changes.

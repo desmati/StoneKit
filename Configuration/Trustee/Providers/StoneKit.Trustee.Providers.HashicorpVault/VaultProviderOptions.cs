@@ -13,17 +13,17 @@ public class VaultProviderOptions
     /// <summary>
     /// The Vault Server Uri with port.
     /// </summary>
-    public string ServerUri { get; set; }
+    public required string ServerUri { get; set; }
 
     /// <summary>
     /// The path where the kv secrets engine is enabled.
     /// </summary>
-    public string Path { get; set; }
+    public string? Path { get; set; }
 
     /// <summary>
     /// The auth method to be used to acquire a vault token.
     /// </summary>
-    public IAuthMethodInfo AuthMethodInfo { get; set; }
+    public IAuthMethodInfo? AuthMethodInfo { get; set; }
 
     /// <summary>
     /// The interval to check for for remote changes. Defaults to 60 seconds.

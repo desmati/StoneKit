@@ -104,7 +104,7 @@ internal class RemoteConfigurationProvider : ConfigurationProvider, IDisposable
         Data = await RequestConfigurationAsync().ConfigureAwait(false);
     }
 
-    private async Task<IDictionary<string, string>> RequestConfigurationAsync()
+    private async Task<IDictionary<string, string?>> RequestConfigurationAsync()
     {
         var encodedConfigurationName = WebUtility.UrlEncode(_source.ConfigurationName);
 
@@ -135,7 +135,7 @@ internal class RemoteConfigurationProvider : ConfigurationProvider, IDisposable
 
                         Log.Information("Configuration updated for '{ConfigurationName}'", _source.ConfigurationName);
 
-                        return data;
+                        return data!;
                     }
                 }
 
@@ -153,7 +153,7 @@ internal class RemoteConfigurationProvider : ConfigurationProvider, IDisposable
             }
         }
 
-        return new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+        return new Dictionary<string, string?>(StringComparer.OrdinalIgnoreCase);
     }
 
     private string ComputeHash(Stream stream)

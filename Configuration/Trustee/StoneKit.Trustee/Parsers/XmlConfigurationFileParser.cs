@@ -138,7 +138,7 @@ public class XmlConfigurationFileParser : IConfigurationParser
     }
 
     private void ProcessAttributes(XmlReader reader, Stack<string> prefixStack, IDictionary<string, string> data,
-        Action<XmlReader, Stack<string>, IDictionary<string, string>, XmlWriter> act, XmlWriter writer = null)
+        Action<XmlReader, Stack<string>, IDictionary<string, string>, XmlWriter?> act, XmlWriter? writer = null)
     {
         for (int i = 0; i < reader.AttributeCount; i++)
         {
@@ -156,7 +156,7 @@ public class XmlConfigurationFileParser : IConfigurationParser
     }
 
     private static void AddNamePrefix(XmlReader reader, Stack<string> prefixStack,
-        IDictionary<string, string> data, XmlWriter writer)
+        IDictionary<string, string> data, XmlWriter? writer)
     {
         if (!string.Equals(reader.LocalName, NameAttributeKey, StringComparison.OrdinalIgnoreCase))
         {
@@ -175,7 +175,7 @@ public class XmlConfigurationFileParser : IConfigurationParser
     }
 
     private static void AddAttributePair(XmlReader reader, Stack<string> prefixStack,
-        IDictionary<string, string> data, XmlWriter writer)
+        IDictionary<string, string> data, XmlWriter? writer)
     {
         prefixStack.Push(reader.LocalName);
         var key = ConfigurationPath.Combine(prefixStack.Reverse());

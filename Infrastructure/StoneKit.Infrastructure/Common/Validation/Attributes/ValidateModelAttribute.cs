@@ -1,5 +1,4 @@
-﻿using FluentValidation;
-using FluentValidation.Results;
+﻿using FluentValidation.Results;
 
 using Microsoft.AspNetCore.Mvc.Filters;
 
@@ -21,8 +20,8 @@ namespace FluentValidation
                 return;
             }
 
-            object model = null;
-            foreach (KeyValuePair<string, object> argument in context.ActionArguments)
+            object model = null!;
+            foreach (var argument in context.ActionArguments)
             {
                 if (argument.Value is IModelValidator inputModel)
                 {
@@ -37,13 +36,21 @@ namespace FluentValidation
                 return;
             }
 
-            Type validatorInterface = model.GetType().GetInterface(typeof(IModelValidator<>).FullName);
+            var name = typeof(IModelValidator<>)?.FullName;
+            if (string.IsNullOrEmpty(name))
+            {
+                await base.OnActionExecutionAsync(context, next);
+                return;
+            }
+
+            Type? validatorInterface = model.GetType()?.GetInterface(name);
             if (validatorInterface == null)
             {
                 await base.OnActionExecutionAsync(context, next);
                 return;
             }
-            Type validatorType = validatorInterface?.GetGenericArguments()[0];
+
+            Type? validatorType = validatorInterface?.GetGenericArguments()?.FirstOrDefault();
             if (validatorType == null)
             {
                 await base.OnActionExecutionAsync(context, next);
@@ -55,8 +62,10 @@ namespace FluentValidation
                 ValidationResult validationResult = validator.Validate(new ValidationContext<object>(model));
                 if (!validationResult.IsValid)
                 {
-                    List<FluentValidationErrorModel> validationErrorModels = FluentValidationHelpers.GetFluentValidationError(validationResult.Errors);
-                    string errorMessages = validationErrorModels.Select(s => s.ErrorMessage).Aggregate((a, b) => $"{a}{Environment.NewLine}{b}");
+                    var validationErrorModels = FluentValidationHelpers.GetFluentValidationError(validationResult.Errors);
+                    string? errorMessages = validationErrorModels
+                        ?.Select(s => s.ErrorMessage)
+                        ?.Aggregate((a, b) => $"{a}{Environment.NewLine}{b}");
 
                     throw new Exception(errorMessages);
                 }

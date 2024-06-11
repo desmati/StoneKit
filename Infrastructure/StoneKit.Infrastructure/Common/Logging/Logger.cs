@@ -5,7 +5,7 @@ namespace Serilog
 {
     public static class Logger
     {
-        private static ILoggerFactory _factory;
+        private static ILoggerFactory? _factory;
 
         public static ILoggerFactory LoggerFactory
         {

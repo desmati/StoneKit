@@ -16,7 +16,7 @@ public class JsonConfigurationFileParser : IConfigurationParser
 {
     private readonly IDictionary<string, string> _data = new SortedDictionary<string, string>(StringComparer.OrdinalIgnoreCase);
     private readonly Stack<string> _context = new Stack<string>();
-    private string _currentPath;
+    private string? _currentPath;
 
     /// <summary>
     /// Parses the configuration data from the provided input stream.
@@ -83,10 +83,17 @@ public class JsonConfigurationFileParser : IConfigurationParser
             case JsonValueKind.False:
             case JsonValueKind.Null:
                 var key = _currentPath;
+
+                if (string.IsNullOrEmpty(key))
+                {
+                    throw new FormatException($"A key '{key}' was null.");
+                }
+
                 if (_data.ContainsKey(key))
                 {
                     throw new FormatException($"A duplicate key '{key}' was found.");
                 }
+
                 _data[key] = value.ToString();
                 break;
 

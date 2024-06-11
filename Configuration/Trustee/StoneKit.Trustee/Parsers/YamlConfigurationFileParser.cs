@@ -17,7 +17,7 @@ public class YamlConfigurationFileParser : IConfigurationParser
 {
     private readonly IDictionary<string, string> _data = new SortedDictionary<string, string>(StringComparer.OrdinalIgnoreCase);
     private readonly Stack<string> _context = new Stack<string>();
-    private string _currentPath;
+    private string? _currentPath;
 
     /// <summary>
     /// Parses the configuration data from the provided input stream.
@@ -48,7 +48,7 @@ public class YamlConfigurationFileParser : IConfigurationParser
         VisitYamlNode(context, yamlNodePair.Value);
     }
 
-    private void VisitYamlNode(string context, YamlNode node)
+    private void VisitYamlNode(string? context, YamlNode node)
     {
         if (node is YamlScalarNode scalarNode)
         {
@@ -64,17 +64,22 @@ public class YamlConfigurationFileParser : IConfigurationParser
         }
     }
 
-    private void VisitYamlScalarNode(string context, YamlScalarNode yamlValue)
+    private void VisitYamlScalarNode(string? context, YamlScalarNode yamlValue)
     {
         EnterContext(context);
         var key = _currentPath;
+
+        if (string.IsNullOrEmpty(key))
+        {
+            throw new ArgumentNullException($"A key '{key}' can not be null.");
+        }
 
         if (_data.ContainsKey(key))
         {
             throw new FormatException($"A duplicate key '{key}' was found.");
         }
 
-        _data[key] = IsNullValue(yamlValue) ? null : yamlValue.Value;
+        _data[key] = IsNullValue(yamlValue) ? null! : yamlValue.Value!;
         ExitContext();
     }
 
@@ -86,7 +91,7 @@ public class YamlConfigurationFileParser : IConfigurationParser
         }
     }
 
-    private void VisitYamlMappingNode(string context, YamlMappingNode yamlValue)
+    private void VisitYamlMappingNode(string? context, YamlMappingNode yamlValue)
     {
         EnterContext(context);
 
@@ -95,7 +100,7 @@ public class YamlConfigurationFileParser : IConfigurationParser
         ExitContext();
     }
 
-    private void VisitYamlSequenceNode(string context, YamlSequenceNode yamlValue)
+    private void VisitYamlSequenceNode(string? context, YamlSequenceNode yamlValue)
     {
         EnterContext(context);
 
@@ -112,10 +117,13 @@ public class YamlConfigurationFileParser : IConfigurationParser
         }
     }
 
-    private void EnterContext(string context)
+    private void EnterContext(string? context)
     {
-        _context.Push(context);
-        _currentPath = ConfigurationPath.Combine(_context.Reverse());
+        if (!string.IsNullOrEmpty(context))
+        {
+            _context.Push(context);
+            _currentPath = ConfigurationPath.Combine(_context.Reverse());
+        }
     }
 
     private void ExitContext()

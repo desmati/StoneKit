@@ -30,7 +30,7 @@ public static class VaultProviderExtensions
             throw new ArgumentNullException(nameof(configure));
         }
 
-        var options = new VaultProviderOptions();
+        var options = new VaultProviderOptions() { ServerUri = ""};
         configure(options);
 
         builder.Services.AddSingleton(options);

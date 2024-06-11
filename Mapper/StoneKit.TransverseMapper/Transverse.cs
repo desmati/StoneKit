@@ -112,7 +112,7 @@ namespace System.Reflection.Mapping
         /// <param name="source">Source object.</param>
         /// <param name="target">Target object.</param>
         /// <returns>Mapped object.</returns>
-        public static TTarget Map<TSource, TTarget>(TSource source, TTarget target = default(TTarget))
+        public static TTarget Map<TSource, TTarget>(TSource source, TTarget target = default)
         {
             TypePair typePair = TypePair.Create<TSource, TTarget>();
 
