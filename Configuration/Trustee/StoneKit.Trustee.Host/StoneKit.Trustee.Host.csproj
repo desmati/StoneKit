@@ -1,0 +1,11 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+	<Import Project="..\..\..\CommonProperties.targets" />
+	<PropertyGroup>
+		<Title>StoneKit.Trustee.Host</Title>
+		<Description>rtwert</Description>
+		<PackageTags>wertwertwer</PackageTags>
+	</PropertyGroup>
+	<ItemGroup>
+	  <ProjectReference Include="..\..\..\Infrastructure\StoneKit.Infrastructure\StoneKit.Infrastructure.csproj" />
+	</ItemGroup>
+</Project>

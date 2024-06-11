@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "StoneKit.Trustee.Examples.Host": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:60079;http://localhost:60080"
+    }
+  }
+}

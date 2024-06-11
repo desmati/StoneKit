@@ -1,0 +1,12 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+	<Import Project="..\..\..\..\CommonProperties.targets" />
+	<PropertyGroup>
+		<Title>StoneKit.Trustee.Publishers.Redis</Title>
+		<Description></Description>
+		<PackageTags></PackageTags>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\..\StoneKit.Trustee.Host\StoneKit.Trustee.Host.csproj" />
+	</ItemGroup>
+</Project>

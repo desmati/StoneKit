@@ -57,7 +57,7 @@ namespace Microsoft.Extensions.Configuration
                 builder.Services.AddCors(options => { options.AddPolicy("DEFAULT_CORD_POLICY", config.Cors); });
             }
 
-            builder.Services.AddSingleton<IHasher, Hasher>();
+            builder.Services.AddSingleton<IHashProvider, HashProvider>();
 
             builder.Services.AddScoped<IOperationResultFactory, OperationResultFactory>();
             builder.Services.AddSingleton<OperationResultFactoryExample>();

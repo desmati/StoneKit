@@ -1,0 +1,1 @@
+StoneKit.Trustee.Providers.HashicorpVault

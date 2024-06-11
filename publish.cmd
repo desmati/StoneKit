@@ -38,4 +38,7 @@ for /R ".\Assets\Packages\" %%A in ("StoneKit.Configuration.InIParser.*.nupkg") 
 for /R ".\Assets\Packages\" %%A in ("StoneKit.Core.Structs.Age.*.nupkg") do (set LatestPackage=%%A)
 "./Assets/nuget.exe" push %LatestPackage% -Source https://api.nuget.org/v3/index.json -ApiKey %ApiKey%
 
+for /R ".\Assets\Packages\" %%A in ("StoneKit.Infrastructure.*.nupkg") do (set LatestPackage=%%A)
+"./Assets/nuget.exe" push %LatestPackage% -Source https://api.nuget.org/v3/index.json -ApiKey %ApiKey%
+
 pause
