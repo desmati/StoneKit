@@ -77,15 +77,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StoneKit.Trustee.Providers.
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Providers", "Providers", "{D1FC3C7A-D78C-47EB-BA72-444720F0CF96}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StoneKit.Trustee.Providers.FileSystem", "Configuration\Trustee\Providers\StoneKit.Trustee.Providers.FileSystem\StoneKit.Trustee.Providers.FileSystem.csproj", "{C42FD48D-08EB-472C-A0CE-333E95D1CB8B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StoneKit.Trustee.Providers.FileSystem", "Configuration\Trustee\Providers\StoneKit.Trustee.Providers.FileSystem\StoneKit.Trustee.Providers.FileSystem.csproj", "{C42FD48D-08EB-472C-A0CE-333E95D1CB8B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StoneKit.Trustee.Providers.HashicorpVault", "Configuration\Trustee\Providers\StoneKit.Trustee.Providers.HashicorpVault\StoneKit.Trustee.Providers.HashicorpVault.csproj", "{16454A38-8268-46AF-9FD0-75FA6A554127}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StoneKit.Trustee.Providers.HashicorpVault", "Configuration\Trustee\Providers\StoneKit.Trustee.Providers.HashicorpVault\StoneKit.Trustee.Providers.HashicorpVault.csproj", "{16454A38-8268-46AF-9FD0-75FA6A554127}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StoneKit.Trustee.Providers.AzureKeyVault", "Configuration\Trustee\Providers\StoneKit.Trustee.Providers.AzureKeyVault\StoneKit.Trustee.Providers.AzureKeyVault.csproj", "{3DE6B502-5A7D-4AD3-8134-58A6CB414A75}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StoneKit.Trustee.Providers.AzureKeyVault", "Configuration\Trustee\Providers\StoneKit.Trustee.Providers.AzureKeyVault\StoneKit.Trustee.Providers.AzureKeyVault.csproj", "{3DE6B502-5A7D-4AD3-8134-58A6CB414A75}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Publishers", "Publishers", "{CA370B56-BAF5-4707-8A14-305325697E83}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StoneKit.Trustee.Publishers.Redis", "Configuration\Trustee\Publishers\StoneKit.Trustee.Publishers.Redis\StoneKit.Trustee.Publishers.Redis.csproj", "{6D088178-61B3-4ECE-BD66-3B7B5B2052E8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StoneKit.Trustee.Publishers.Redis", "Configuration\Trustee\Publishers\StoneKit.Trustee.Publishers.Redis\StoneKit.Trustee.Publishers.Redis.csproj", "{6D088178-61B3-4ECE-BD66-3B7B5B2052E8}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StoneKit.Trustee.Publishers.RabbitMq", "Configuration\Trustee\Publishers\StoneKit.Trustee.Publishers.RabbitMq\StoneKit.Trustee.Publishers.RabbitMq.csproj", "{43CC4EAD-E36B-4BD4-A3F0-7E4A836027F0}"
 EndProject
@@ -93,9 +93,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StoneKit.Trustee.Publishers
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Examples", "Examples", "{0837B416-33DF-4617-B57F-11E9D39131DB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StoneKit.Trustee.Examples.Host", "Configuration\Trustee\Examples\StoneKit.Trustee.Examples.Host\StoneKit.Trustee.Examples.Host.csproj", "{6C30D8C9-4285-46DE-A7A0-8D4D0ACDD2C0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StoneKit.Trustee.Examples.Host", "Configuration\Trustee\Examples\StoneKit.Trustee.Examples.Host\StoneKit.Trustee.Examples.Host.csproj", "{6C30D8C9-4285-46DE-A7A0-8D4D0ACDD2C0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StoneKit.Trustee.Examples.Client", "Configuration\Trustee\Examples\StoneKit.Trustee.Examples.Client\StoneKit.Trustee.Examples.Client.csproj", "{0179565A-8372-4E29-93AF-C41DC90C0EA4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StoneKit.Trustee.Examples.Client", "Configuration\Trustee\Examples\StoneKit.Trustee.Examples.Client\StoneKit.Trustee.Examples.Client.csproj", "{0179565A-8372-4E29-93AF-C41DC90C0EA4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Storage", "Storage", "{6690055B-FB10-4693-A76A-6044AA8CEB0E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataStore", "Storage\DataStore\DataStore.csproj", "{0C8B6F64-40BD-48D5-9E57-D1FEE84DD606}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -215,6 +219,10 @@ Global
 		{0179565A-8372-4E29-93AF-C41DC90C0EA4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0179565A-8372-4E29-93AF-C41DC90C0EA4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0179565A-8372-4E29-93AF-C41DC90C0EA4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0C8B6F64-40BD-48D5-9E57-D1FEE84DD606}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0C8B6F64-40BD-48D5-9E57-D1FEE84DD606}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0C8B6F64-40BD-48D5-9E57-D1FEE84DD606}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0C8B6F64-40BD-48D5-9E57-D1FEE84DD606}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -256,6 +264,7 @@ Global
 		{0837B416-33DF-4617-B57F-11E9D39131DB} = {C84D8AD5-B8DC-4D79-B2BC-3E4AAA9D097C}
 		{6C30D8C9-4285-46DE-A7A0-8D4D0ACDD2C0} = {0837B416-33DF-4617-B57F-11E9D39131DB}
 		{0179565A-8372-4E29-93AF-C41DC90C0EA4} = {0837B416-33DF-4617-B57F-11E9D39131DB}
+		{0C8B6F64-40BD-48D5-9E57-D1FEE84DD606} = {6690055B-FB10-4693-A76A-6044AA8CEB0E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {62DD61DF-EBBE-46C3-94C5-C769E05AA273}

@@ -9,7 +9,7 @@
 	  <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="8.0.0" />
 	  <PackageReference Include="NATS.Client" Version="1.1.5" />
 	  <PackageReference Include="RabbitMQ.Client" Version="6.8.1" />
-	  <PackageReference Include="YamlDotNet" Version="15.1.6" />
+	  <PackageReference Include="YamlDotNet" Version="15.3.0" />
 	</ItemGroup>
 	<ItemGroup>
 	  <ProjectReference Include="..\..\..\Infrastructure\StoneKit.Infrastructure\StoneKit.Infrastructure.csproj" />
