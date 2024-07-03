@@ -18,7 +18,7 @@ public class HashProvider : IHashProvider
     public HashProvider(HashAlgorithmTypes? algorithm = null, Encoding? encoding = null)
     {
         _encoding = encoding ?? Encoding.UTF8;
-        _hashAlgorithm = CreateHasher(algorithm ?? HashAlgorithmTypes.SHA512);
+        _hashAlgorithm = CreateHasher(algorithm ?? HashAlgorithmTypes.SHA256);
     }
 
     /// <summary>

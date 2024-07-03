@@ -2,7 +2,7 @@
 	<PropertyGroup>
 		<SolutionDir Condition=" '$(SolutionDir)' == '' ">$(MSBuildThisFileDirectory)</SolutionDir>
 	</PropertyGroup>
-	
+
 	<PropertyGroup>
 		<TargetFramework>net8.0</TargetFramework>
 		<ImplicitUsings>enable</ImplicitUsings>
@@ -53,31 +53,36 @@
 	<Target Name="SetPackageVersion" DependsOnTargets="Build">
 		<PropertyGroup>
 			<FinalResult>
-			  $([MSBuild]::Add(
-				$([MSBuild]::Multiply(
-				  $([MSBuild]::Subtract(
-					$([MSBuild]::Add(
-					  $([MSBuild]::Multiply(
-						$([MSBuild]::Subtract($([System.DateTime]::UtcNow.Month), 1)), 
-						31
-					  )), 
-					  $([System.DateTime]::UtcNow.Day)
-					)), 
-					1)
-				  ), 
-				  1380)
-				), 
 				$([MSBuild]::Add(
-				  $([MSBuild]::Multiply(
-					$([MSBuild]::Subtract($([System.DateTime]::UtcNow.Hour), 1)), 
-					60)
-				  ), 
-				  $([System.DateTime]::UtcNow.Minute)
+				$([MSBuild]::Multiply(
+				$([MSBuild]::Subtract(
+				$([MSBuild]::Add(
+				$([MSBuild]::Multiply(
+				$([MSBuild]::Subtract($([System.DateTime]::UtcNow.Month), 1)),
+				31
+				)),
+				$([System.DateTime]::UtcNow.Day)
+				)),
+				1)
+				),
+				1380)
+				),
+				$([MSBuild]::Add(
+				$([MSBuild]::Multiply(
+				$([MSBuild]::Subtract($([System.DateTime]::UtcNow.Hour), 1)),
+				60)
+				),
+				$([System.DateTime]::UtcNow.Minute)
 				))
-			  ))
+				))
 			</FinalResult>
-			
-			<PackageVersion>2024.1.1.$(FinalResult)</PackageVersion>
+
+			<PackageVersionInfo>2024.1.1.$(FinalResult)</PackageVersionInfo>
+
+			<PackageVersion>$(PackageVersionInfo)</PackageVersion>
+			<AssemblyVersion>$(PackageVersionInfo)</AssemblyVersion>
+			<Version>$(PackageVersionInfo)</Version>
+			<FileVersion>$(PackageVersionInfo)</FileVersion>
 		</PropertyGroup>
 	</Target>
 
