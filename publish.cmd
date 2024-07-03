@@ -68,4 +68,7 @@ for /R ".\Assets\Packages\StoneKit.Trustee.Publishers.RabbitMq" %%A in ("StoneKi
 for /R ".\Assets\Packages\StoneKit.Trustee.Publishers.Redis" %%A in ("StoneKit.Trustee.Publishers.Redis.*.nupkg") do (set LatestPackage=%%A)
 "./Assets/nuget.exe" push %LatestPackage% -Source https://api.nuget.org/v3/index.json -ApiKey %ApiKey%
 
+for /R ".\Assets\Packages\StoneKit.DataStore" %%A in ("StoneKit.DataStore.*.nupkg") do (set LatestPackage=%%A)
+"./Assets/nuget.exe" push %LatestPackage% -Source https://api.nuget.org/v3/index.json -ApiKey %ApiKey%
+
 pause

@@ -3,6 +3,7 @@ using StoneKit.TransverseMapper.Binding;
 using StoneKit.TransverseMapper.Mappers.Builder;
 using StoneKit.TransverseMapper.Mappers.Classes.Members;
 
+using System;
 using System.Reflection;
 
 namespace UnitTests

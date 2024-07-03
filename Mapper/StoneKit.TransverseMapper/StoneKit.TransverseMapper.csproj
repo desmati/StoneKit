@@ -9,8 +9,25 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\..\Core\Reflection\StoneKit.Core.Reflection\StoneKit.Core.Reflection.csproj" />
-		<ProjectReference Include="..\..\Core\Structs\Maybe\StoneKit.Core.Structs.Maybe.csproj" />
-		<ProjectReference Include="..\..\Core\Structs\StoneKit.Core.Structs.TypePair\StoneKit.Core.Structs.TypePair.csproj" />
+		<ProjectReference Include="..\..\Core\Common\StoneKit.Core.Common\StoneKit.Core.Common.csproj">
+			<ReferenceOutputAssembly>true</ReferenceOutputAssembly>
+			<IncludeAssets>StoneKit.Core.Common.dll</IncludeAssets>
+		</ProjectReference>
+		<ProjectReference Include="..\..\Core\Reflection\StoneKit.Core.Reflection\StoneKit.Core.Reflection.csproj">
+			<ReferenceOutputAssembly>true</ReferenceOutputAssembly>
+			<IncludeAssets>StoneKit.Core.Reflection.dll</IncludeAssets>
+		</ProjectReference>
+
+		<ProjectReference Include="..\..\Core\Structs\Maybe\StoneKit.Core.Structs.Maybe.csproj">
+			<ReferenceOutputAssembly>true</ReferenceOutputAssembly>
+			<IncludeAssets>StoneKit.Core.Structs.Maybe.dll</IncludeAssets>
+		</ProjectReference>
+
+		<ProjectReference Include="..\..\Core\Structs\StoneKit.Core.Structs.TypePair\StoneKit.Core.Structs.TypePair.csproj">
+			<ReferenceOutputAssembly>true</ReferenceOutputAssembly>
+			<IncludeAssets>StoneKit.Core.Structs.TypePair.dll</IncludeAssets>
+		</ProjectReference>
+
+		
 	</ItemGroup>
 </Project>

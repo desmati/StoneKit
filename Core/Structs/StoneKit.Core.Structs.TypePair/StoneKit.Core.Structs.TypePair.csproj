@@ -8,6 +8,10 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\..\Common\StoneKit.Core.Common\StoneKit.Core.Common.csproj" />
+	  <ProjectReference Include="..\..\Common\StoneKit.Core.Common\StoneKit.Core.Common.csproj" >
+			<ReferenceOutputAssembly>true</ReferenceOutputAssembly>
+			<IncludeAssets>StoneKit.Core.Common.dll</IncludeAssets>
+		</ProjectReference>
+
 	</ItemGroup>
 </Project>

@@ -8,7 +8,7 @@ It allows for simple and efficient storage and retrieval of objects by ID, with 
 You can install StoneKit.DataStore via NuGet Package Manager:
 
 ```
-PM> Install-Package DataStore
+PM> Install-Package StoneKit.DataStore
 ```
 
 ## Features
