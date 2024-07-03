@@ -6,10 +6,10 @@
 		<PackageTags></PackageTags>
 	</PropertyGroup>
 	<ItemGroup>
-	  <PackageReference Include="RabbitMQ.Client" Version="6.8.1" />
+		<PackageReference Include="RabbitMQ.Client" Version="6.8.1" />
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\..\StoneKit.Trustee.Host\StoneKit.Trustee.Host.csproj" />
+		<PackageReference Include="StoneKit.Trustee.Host" Version="[1.24.703.*,2.0.0)" />
 	</ItemGroup>
 </Project>

@@ -9,25 +9,9 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\..\Core\Common\StoneKit.Core.Common\StoneKit.Core.Common.csproj">
-			<ReferenceOutputAssembly>true</ReferenceOutputAssembly>
-			<IncludeAssets>StoneKit.Core.Common.dll</IncludeAssets>
-		</ProjectReference>
-		<ProjectReference Include="..\..\Core\Reflection\StoneKit.Core.Reflection\StoneKit.Core.Reflection.csproj">
-			<ReferenceOutputAssembly>true</ReferenceOutputAssembly>
-			<IncludeAssets>StoneKit.Core.Reflection.dll</IncludeAssets>
-		</ProjectReference>
-
-		<ProjectReference Include="..\..\Core\Structs\Maybe\StoneKit.Core.Structs.Maybe.csproj">
-			<ReferenceOutputAssembly>true</ReferenceOutputAssembly>
-			<IncludeAssets>StoneKit.Core.Structs.Maybe.dll</IncludeAssets>
-		</ProjectReference>
-
-		<ProjectReference Include="..\..\Core\Structs\StoneKit.Core.Structs.TypePair\StoneKit.Core.Structs.TypePair.csproj">
-			<ReferenceOutputAssembly>true</ReferenceOutputAssembly>
-			<IncludeAssets>StoneKit.Core.Structs.TypePair.dll</IncludeAssets>
-		</ProjectReference>
-
-		
+		<PackageReference Include="StoneKit.Core.Common" Version="[1.24.703.*,2.0.0)" />
+		<PackageReference Include="StoneKit.Core.Reflection" Version="[1.24.703.*,2.0.0)" />
+		<PackageReference Include="StoneKit.Core.Structs.Maybe" Version="[1.24.703.*,2.0.0)" />
+		<PackageReference Include="StoneKit.Core.Structs.TypePair" Version="[1.24.703.*,2.0.0)" />
 	</ItemGroup>
 </Project>

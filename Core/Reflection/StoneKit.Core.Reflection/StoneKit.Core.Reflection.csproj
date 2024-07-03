@@ -8,22 +8,22 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\..\Structs\Maybe\StoneKit.Core.Structs.Maybe.csproj" />
+		<PackageReference Include="StoneKit.Core.Structs.Maybe" Version="[1.24.703.*,2.0.0)" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <None Update="AssemblyBuilder\README.md">
-	    <PackagePath>\</PackagePath>
-	    <Pack>True</Pack>
-	  </None>
-	  <None Update="CodeGenerator\README.md">
-	    <PackagePath>\</PackagePath>
-	    <Pack>True</Pack>
-	  </None>
-	  <None Update="Extensions\README.md">
-	    <PackagePath>\</PackagePath>
-	    <Pack>True</Pack>
-	  </None>
+		<None Update="AssemblyBuilder\README.md">
+			<PackagePath>\</PackagePath>
+			<Pack>True</Pack>
+		</None>
+		<None Update="CodeGenerator\README.md">
+			<PackagePath>\</PackagePath>
+			<Pack>True</Pack>
+		</None>
+		<None Update="Extensions\README.md">
+			<PackagePath>\</PackagePath>
+			<Pack>True</Pack>
+		</None>
 	</ItemGroup>
 
 </Project>

@@ -1,11 +1,11 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-	  <OutputType>Exe</OutputType>
-	  <Nullable>enable</Nullable>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<OutputType>Exe</OutputType>
+		<Nullable>enable</Nullable>
+	</PropertyGroup>
 
 	<ItemGroup>
 		<None Remove="appsettings.json" />
@@ -28,6 +28,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\..\StoneKit.Trustee\StoneKit.Trustee.csproj" />
+		<PackageReference Include="StoneKit.Trustee" Version="[1.24.703.*,2.0.0)" />
 	</ItemGroup>
 </Project>
