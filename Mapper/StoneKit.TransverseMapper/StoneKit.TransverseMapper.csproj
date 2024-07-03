@@ -9,9 +9,9 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="StoneKit.Core.Common" Version="[1.24.703.164605,2.0.0)" />
-		<PackageReference Include="StoneKit.Core.Reflection" Version="[1.24.703.164606,2.0.0)" />
-		<PackageReference Include="StoneKit.Core.Structs.Maybe" Version="[1.24.703.164604,2.0.0)" />
-		<PackageReference Include="StoneKit.Core.Structs.TypePair" Version="[1.24.703.164604,2.0.0)" />
+		<PackageReference Include="StoneKit.Core.Common" Version="*" />
+		<PackageReference Include="StoneKit.Core.Reflection" Version="*" />
+		<PackageReference Include="StoneKit.Core.Structs.Maybe" Version="*" />
+		<PackageReference Include="StoneKit.Core.Structs.TypePair" Version="*" />
 	</ItemGroup>
 </Project>

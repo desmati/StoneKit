@@ -8,7 +8,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="StoneKit.Core.Structs.Maybe" Version="[1.24.703.164604,2.0.0)" />
+		<PackageReference Include="StoneKit.Core.Structs.Maybe" Version="*" />
 	</ItemGroup>
 
 	<ItemGroup>

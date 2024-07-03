@@ -23,9 +23,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="StoneKit.Core.Structs.DateRange" Version="[1.24.703.164603,2.0.0)" />
-		<PackageReference Include="StoneKit.Core.Structs.Maybe" Version="[1.24.703.164604,2.0.0)" />
-		<PackageReference Include="StoneKit.Core.Structs.TypePair" Version="[1.24.703.164604,2.0.0)" />
+		<PackageReference Include="StoneKit.Core.Structs.DateRange" Version="*" />
+		<PackageReference Include="StoneKit.Core.Structs.Maybe" Version="*" />
+		<PackageReference Include="StoneKit.Core.Structs.TypePair" Version="*" />
 	</ItemGroup>
 
 </Project>

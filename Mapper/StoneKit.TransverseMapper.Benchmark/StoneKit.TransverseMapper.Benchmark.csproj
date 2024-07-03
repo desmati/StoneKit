@@ -10,6 +10,6 @@
 		<PackageReference Include="AutoMapper" Version="13.0.1" />
 	</ItemGroup>
 	<ItemGroup>
-		<PackageReference Include="StoneKit.TransverseMapper" Version="[1.24.703.164608,2.0.0)" />
+		<PackageReference Include="StoneKit.TransverseMapper" Version="*" />
 	</ItemGroup>
 </Project>

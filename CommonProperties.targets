@@ -41,12 +41,43 @@
 		<WarningLevel>4</WarningLevel>
 	</PropertyGroup>
 
-	<Target Name="SetPackageVersion" DependsOnTargets="Build">
+	<!--<Target Name="SetPackageVersion" DependsOnTargets="Build">
 		<PropertyGroup>
 			<PackageVersion>$([System.DateTime]::Now.ToString("1.yy.MMdd.HHmmss"))</PackageVersion>
 			<AssemblyVersion>$([System.DateTime]::Now.ToString("1.yy.MMdd.HHmmss"))</AssemblyVersion>
 			<Version>$([System.DateTime]::Now.ToString("1.yy.MMdd.HHmmss"))</Version>
 			<FileVersion>$([System.DateTime]::Now.ToString("1.yy.MMdd.HHmmss"))</FileVersion>
+		</PropertyGroup>
+	</Target>-->
+
+	<Target Name="SetPackageVersion" DependsOnTargets="Build">
+		<PropertyGroup>
+			<FinalResult>
+			  $([MSBuild]::Add(
+				$([MSBuild]::Multiply(
+				  $([MSBuild]::Subtract(
+					$([MSBuild]::Add(
+					  $([MSBuild]::Multiply(
+						$([MSBuild]::Subtract($([System.DateTime]::UtcNow.Month), 1)), 
+						31
+					  )), 
+					  $([System.DateTime]::UtcNow.Day)
+					)), 
+					1)
+				  ), 
+				  1380)
+				), 
+				$([MSBuild]::Add(
+				  $([MSBuild]::Multiply(
+					$([MSBuild]::Subtract($([System.DateTime]::UtcNow.Hour), 1)), 
+					60)
+				  ), 
+				  $([System.DateTime]::UtcNow.Minute)
+				))
+			  ))
+			</FinalResult>
+			
+			<PackageVersion>2024.1.1.$(FinalResult)</PackageVersion>
 		</PropertyGroup>
 	</Target>
 
