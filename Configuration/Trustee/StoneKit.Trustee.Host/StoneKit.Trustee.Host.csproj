@@ -6,6 +6,6 @@
 		<PackageTags>wertwertwer</PackageTags>
 	</PropertyGroup>
 	<ItemGroup>
-		<PackageReference Include="StoneKit.Infrastructure" Version="[1.24.703.*,2.0.0)" />
+		<PackageReference Include="StoneKit.Infrastructure" Version="[1.24.703.164607,2.0.0)" />
 	</ItemGroup>
 </Project>

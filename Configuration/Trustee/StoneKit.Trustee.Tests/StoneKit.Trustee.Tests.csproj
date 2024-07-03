@@ -26,8 +26,8 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="StoneKit.Trustee.Host" Version="[1.24.703.*,2.0.0)" />
-		<PackageReference Include="StoneKit.Trustee" Version="[1.24.703.*,2.0.0)" />
+		<PackageReference Include="StoneKit.Trustee.Host" Version="[1.24.703.164604,2.0.0)" />
+		<PackageReference Include="StoneKit.Trustee" Version="[1.24.703.164604,2.0.0)" />
 	</ItemGroup>
 
 

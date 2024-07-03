@@ -9,7 +9,7 @@
 		<PackageReference Include="VaultSharp" Version="1.13.0.1" />
 	</ItemGroup>
 	<ItemGroup>
-		<PackageReference Include="StoneKit.Trustee.Host" Version="[1.24.703.*,2.0.0)" />
-		<PackageReference Include="StoneKit.Infrastructure" Version="[1.24.703.*,2.0.0)" />
+		<PackageReference Include="StoneKit.Trustee.Host" Version="[1.24.703.164604,2.0.0)" />
+		<PackageReference Include="StoneKit.Infrastructure" Version="[1.24.703.164607,2.0.0)" />
 	</ItemGroup>
 </Project>

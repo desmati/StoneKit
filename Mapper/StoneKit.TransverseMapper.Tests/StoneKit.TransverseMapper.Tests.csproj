@@ -23,10 +23,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="StoneKit.TransverseMapper" Version="[1.24.703.*,2.0.0)" />
-		<PackageReference Include="StoneKit.Core.Structs.Maybe" Version="[1.24.703.*,2.0.0)" />
-		<PackageReference Include="StoneKit.Core.Structs.TypePair" Version="[1.24.703.*,2.0.0)" />
-		<PackageReference Include="StoneKit.Core.Reflection" Version="[1.24.703.*,2.0.0)" />
+		<PackageReference Include="StoneKit.TransverseMapper" Version="[1.24.703.164608,2.0.0)" />
+		<PackageReference Include="StoneKit.Core.Structs.Maybe" Version="[1.24.703.164604,2.0.0)" />
+		<PackageReference Include="StoneKit.Core.Structs.TypePair" Version="[1.24.703.164604,2.0.0)" />
+		<PackageReference Include="StoneKit.Core.Reflection" Version="[1.24.703.164606,2.0.0)" />
 	</ItemGroup>
 
 </Project>
