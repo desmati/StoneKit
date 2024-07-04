@@ -8,8 +8,7 @@ namespace System.Data;
 /// <summary>
 /// A simple data store for storing and retrieving objects by ID.
 /// </summary>
-/// <typeparam name="T">The type of objects to store.</typeparam>
-public class DataStore<T> : IDisposable where T : class
+public class DataStore : IDisposable
 {
     const int DEFAULT_CLEANUP_INTERVAL_IN_MINUTES = 60;
 
@@ -19,14 +18,14 @@ public class DataStore<T> : IDisposable where T : class
     private bool disposedValue;
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="DataStore{T}"/> class.
+    /// Initializes a new instance of the <see cref="DataStore"/> class.
     /// </summary>
     /// <param name="directoryPath">The directory path where data will be stored.</param>
     /// <param name="fileLifetime">The time span after which files should be considered for cleanup.</param>
     /// <param name="cleanupInterval">The interval at which the cleanup task will run.</param>
     public DataStore(string? directoryPath, TimeSpan? fileLifetime = null, TimeSpan? cleanupInterval = null)
     {
-        _directoryPath = Path.Combine(directoryPath ?? $"./DataStore", typeof(T).Name);
+        _directoryPath = Path.Combine(directoryPath ?? $"./DataStore");
         _filePaths = new ConcurrentDictionary<string, string>();
 
         // Ensure the directory exists
@@ -71,20 +70,21 @@ public class DataStore<T> : IDisposable where T : class
     /// <summary>
     /// Saves an object to the data store asynchronously.
     /// </summary>
-    /// <param name="data">The object to save.</param>
+    /// <param name="input">The object to save.</param>
     /// <param name="id">Optional. The ID to associate with the object. If not provided, an ID will be computed from the data.</param>
     /// <returns>A task representing the asynchronous save operation. The task result contains the ID associated with the saved object.</returns>
-    public async Task<string> SaveAsync(T data, string? id = null)
+    public async Task<string> SaveAsync(object? input, string? id = null)
     {
-        var json = JsonSerializer.Serialize(data);
+        var data = input == null ? Array.Empty<byte>() : JsonSerializer.SerializeToUtf8Bytes(input);
 
         if (string.IsNullOrEmpty(id))
         {
-            id = ComputeId(json);
+            id = ComputeId(data);
         }
 
-        var filePath = GetFilePath(id);
-        await File.WriteAllTextAsync(filePath, json);
+        var filePath = GetFilePath(id, input?.GetType());
+        await File.WriteAllBytesAsync(filePath, data);
+
         _filePaths[id] = filePath; // Cache the file path
 
         return id;
@@ -93,42 +93,57 @@ public class DataStore<T> : IDisposable where T : class
     /// <summary>
     /// Loads an object from the data store asynchronously.
     /// </summary>
+    /// <typeparam name="T">The type of the object to load.</typeparam>
     /// <param name="id">The ID associated with the object.</param>
     /// <returns>A task representing the asynchronous load operation. The task result contains the object.</returns>
-    public async Task<T?> LoadAsync(string id)
+    public async Task<Maybe<T>> LoadAsync<T>(string id)
     {
         if (string.IsNullOrEmpty(id))
         {
-            return default;
+            return Maybe<T>.Empty;
         }
 
         if (_filePaths.TryGetValue(id, out var filePath) && File.Exists(filePath))
         {
-            var json = await File.ReadAllTextAsync(filePath);
-            return JsonSerializer.Deserialize<T?>(json);
+            using (var stream = File.OpenRead(filePath))
+            {
+                var data = await JsonSerializer.DeserializeAsync<T?>(stream);
+
+                if (data == null)
+                {
+                    return Maybe<T>.Empty;
+                }
+
+                return new Maybe<T>(data, true);
+            }
         }
 
-        return default; // Return null if the object is not found
+        return Maybe<T>.Empty; // Return null if the object is not found
     }
 
     /// <summary>
     /// Gets the file path for the given ID.
     /// </summary>
     /// <param name="id">The ID.</param>
+    /// <param name="type">The type of the object.</param>
     /// <returns>The file path.</returns>
-    private string GetFilePath(string id) => Path.Combine(_directoryPath, $"{id}.json");
+    private string GetFilePath(string id, Type? type) => Path.Combine(_directoryPath, type?.Namespace ?? "NoNamespace", type?.Name ?? "Untyped", $"{id}.stone");
 
     /// <summary>
-    /// Computes an ID for the given input string using MD5 hashing.
+    /// Computes an ID for the given input byte array using MD5 hashing.
     /// </summary>
-    /// <param name="input">The input string.</param>
+    /// <param name="inputBytes">The input byte array.</param>
     /// <returns>The computed ID.</returns>
-    private static string ComputeId(string input)
+    private static string ComputeId(byte[] inputBytes)
     {
+        if (inputBytes?.Length == 0)
+        {
+            inputBytes = Encoding.UTF8.GetBytes(Guid.NewGuid().ToString() + DateTime.UtcNow);
+        }
+
         using (MD5 md5 = MD5.Create())
         {
-            byte[] inputBytes = Encoding.UTF8.GetBytes(input);
-            byte[] hashBytes = md5.ComputeHash(inputBytes);
+            byte[] hashBytes = md5.ComputeHash(inputBytes!);
 
             StringBuilder sb = new StringBuilder();
             for (int i = 0; i < hashBytes.Length; i++)

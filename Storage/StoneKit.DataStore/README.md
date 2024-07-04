@@ -35,34 +35,34 @@ PM> Install-Package StoneKit.DataStore
    In your `Program.cs`, use the `AddDataStore` extension method to configure the data store.
 
 ```csharp
-   using Microsoft.Extensions.DependencyInjection;
-   using SimpleDataStore;
+using Microsoft.Extensions.DependencyInjection;
+using SimpleDataStore;
 
-   var builder = WebApplication.CreateBuilder(args);
+var builder = WebApplication.CreateBuilder(args);
 
-   builder.Services.AddDataStore<MyData>(options =>
-   {
-       options.DirectoryPath = Path.Combine(builder.Environment.ContentRootPath, "DataStore"); // Or null
-       options.FileLifetime = TimeSpan.FromDays(7); // Or null
-       options.CleanupInterval = TimeSpan.FromHours(1); // Or null
-   });
+builder.Services.AddDataStore(options =>
+{
+    options.DirectoryPath = Path.Combine(builder.Environment.ContentRootPath, "DataStore"); // Or null
+    options.FileLifetime = TimeSpan.FromDays(7); // Or null
+    options.CleanupInterval = TimeSpan.FromHours(1); // Or null
+});
 
-   var app = builder.Build();
+var app = builder.Build();
 
-   app.MapGet("/", async (DataStore<MyData> dataStore) =>
-   {
-       // Example data
-       var data = new MyData { Content = "Example Data" };
+app.MapGet("/", async (DataStore dataStore) =>
+{
+    // Example data
+    var data = new MyData { Content = "Example Data" };
 
-       // Save the data
-       var id = await dataStore.SaveAsync(data);
+    // Save the data
+    var id = await dataStore.SaveAsync(data);
 
-       // Retrieve the data
-       var retrievedData = await dataStore.LoadAsync(id);
-       return Results.Ok(retrievedData);
-   });
+    // Retrieve the data
+    var retrievedData = await dataStore.LoadAsync<MyData>(id);
+    return Results.Ok(retrievedData);
+});
 
-   app.Run();
+app.Run();
 ```
 
 2. **Data Model:**
@@ -90,7 +90,7 @@ You can configure the data store with the following options:
 ### Example Configuration
 
 ```csharp
-builder.Services.AddDataStore<MyData>(options =>
+builder.Services.AddDataStore(options =>
 {
     options.DirectoryPath = Path.Combine(builder.Environment.ContentRootPath, "DataStore");
     options.FileLifetime = TimeSpan.FromDays(7);
@@ -105,9 +105,9 @@ builder.Services.AddDataStore<MyData>(options =>
 ```csharp
 public class MyDataService
 {
-    private readonly DataStore<MyData> _dataStore;
+    private readonly DataStore _dataStore;
 
-    public MyDataService(DataStore<MyData> dataStore)
+    public MyDataService(DataStore dataStore)
     {
         _dataStore = dataStore;
     }
@@ -124,16 +124,17 @@ public class MyDataService
 ```csharp
 public class MyDataService
 {
-    private readonly DataStore<MyData> _dataStore;
+    private readonly DataStore _dataStore;
 
-    public MyDataService(DataStore<MyData> dataStore)
+    public MyDataService(DataStore dataStore)
     {
         _dataStore = dataStore;
     }
 
     public async Task<MyData?> LoadDataAsync(string id)
     {
-        return await _dataStore.LoadAsync(id);
+        var result = await _dataStore.LoadAsync<MyData>(id);
+        return result.HasValue ? result.Value : null;
     }
 }
 ```

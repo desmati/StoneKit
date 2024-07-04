@@ -41,7 +41,7 @@ public static class OtpAuthenticator
     public static string GenerateKey()
     {
         byte[] data = new byte[16]; // 128-bit key
-        using (var cryptoServiceProvider = new RNGCryptoServiceProvider())
+        using (var cryptoServiceProvider = RandomNumberGenerator.Create())
         {
             cryptoServiceProvider.GetBytes(data); // Generate random bytes
         }

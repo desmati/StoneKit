@@ -19,7 +19,7 @@ public static class DataStoreExtensions
         var options = new DataStoreOptions();
         configureOptions(options);
 
-        var dataStore = new DataStore<T>(options.DirectoryPath, options.FileLifetime, options.CleanupInterval);
+        var dataStore = new DataStore(options.DirectoryPath, options.FileLifetime, options.CleanupInterval);
         services.AddSingleton(dataStore);
 
         return services;
