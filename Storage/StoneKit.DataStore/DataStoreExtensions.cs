@@ -1,5 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 
+using StoneKit.DataStore;
+
 namespace System.Data;
 
 /// <summary>
@@ -19,7 +21,12 @@ public static class DataStoreExtensions
         var options = new DataStoreOptions();
         configureOptions(options);
 
-        var dataStore = new DataStore(options.DirectoryPath, options.FileLifetime, options.CleanupInterval);
+        AesEncryption.Init(options.EncryptionKey);
+
+        var dataStore = new DataStore(options.DirectoryPath, options.FileLifetime, options.CleanupInterval, !string.IsNullOrEmpty(options.EncryptionKey));
+
+        DataStore.StaticStorage = dataStore;
+
         services.AddSingleton(dataStore);
 
         return services;

@@ -35,6 +35,9 @@
 	<ItemGroup>
 		<PackageReference Include="StoneKit.TransverseMapper" Version="*" />
 	</ItemGroup>
+	<ItemGroup>
+	  <Folder Include="Common\Cryptography\Files\" />
+	</ItemGroup>
 
 
 </Project>

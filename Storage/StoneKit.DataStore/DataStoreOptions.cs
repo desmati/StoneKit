@@ -11,6 +11,11 @@ public class DataStoreOptions
     public string? DirectoryPath { get; set; }
 
     /// <summary>
+    /// Gets or sets an encryption key used for encrypting/decrypting file contents using AES. No encryption will be used if left blank or null.
+    /// </summary>
+    public string? EncryptionKey { get; set; }
+
+    /// <summary>
     /// Gets or sets the time span after which files should be considered for cleanup. 
     /// If not set, no cleanup will occure.
     /// </summary>

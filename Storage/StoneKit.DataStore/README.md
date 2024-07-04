@@ -86,6 +86,7 @@ You can configure the data store with the following options:
 - **DirectoryPath:** Optional; The directory path where data will be stored.
 - **FileLifetime:** Optional; The time span after which files should be considered for cleanup.
 - **CleanupInterval:** Optional; The interval at which the cleanup task will run.
+- **EncryptionKey:** Optional; An encryption key used for encrypting/decrypting the stored data using AES. No encryption will be used if left blank or null.
 
 ### Example Configuration
 
@@ -95,6 +96,7 @@ builder.Services.AddDataStore(options =>
     options.DirectoryPath = Path.Combine(builder.Environment.ContentRootPath, "DataStore");
     options.FileLifetime = TimeSpan.FromDays(7);
     options.CleanupInterval = TimeSpan.FromHours(1);
+    options.EncryptionKey = "Some_Secret_Key";
 });
 ```
 

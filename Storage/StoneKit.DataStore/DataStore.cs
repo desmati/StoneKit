@@ -1,4 +1,6 @@
-﻿using System.Collections.Concurrent;
+﻿using StoneKit.DataStore;
+
+using System.Collections.Concurrent;
 using System.Security.Cryptography;
 using System.Text;
 using System.Text.Json;
@@ -10,11 +12,14 @@ namespace System.Data;
 /// </summary>
 public class DataStore : IDisposable
 {
+    public static DataStore StaticStorage = null!;
+
     const int DEFAULT_CLEANUP_INTERVAL_IN_MINUTES = 60;
 
     private readonly string _directoryPath;
     private readonly ConcurrentDictionary<string, string> _filePaths;
     private readonly Timer? _cleanupTimer;
+    private readonly bool encryptionEnabled = false;
     private bool disposedValue;
 
     /// <summary>
@@ -23,7 +28,7 @@ public class DataStore : IDisposable
     /// <param name="directoryPath">The directory path where data will be stored.</param>
     /// <param name="fileLifetime">The time span after which files should be considered for cleanup.</param>
     /// <param name="cleanupInterval">The interval at which the cleanup task will run.</param>
-    public DataStore(string? directoryPath, TimeSpan? fileLifetime = null, TimeSpan? cleanupInterval = null)
+    public DataStore(string? directoryPath, TimeSpan? fileLifetime = null, TimeSpan? cleanupInterval = null, bool encryptionEnabled = false)
     {
         _directoryPath = Path.Combine(directoryPath ?? $"./DataStore");
         _filePaths = new ConcurrentDictionary<string, string>();
@@ -35,6 +40,7 @@ public class DataStore : IDisposable
         }
 
         _cleanupTimer = SetupCleanup(fileLifetime, cleanupInterval);
+        this.encryptionEnabled = encryptionEnabled;
     }
 
     /// <summary>
@@ -75,15 +81,18 @@ public class DataStore : IDisposable
     /// <returns>A task representing the asynchronous save operation. The task result contains the ID associated with the saved object.</returns>
     public async Task<string> SaveAsync(object? input, string? id = null)
     {
-        var data = input == null ? Array.Empty<byte>() : JsonSerializer.SerializeToUtf8Bytes(input);
+        var plainData = input == null ? Array.Empty<byte>() : JsonSerializer.SerializeToUtf8Bytes(input);
+
+        var encryptedData = AesEncryption.Encrypt(plainData);
 
         if (string.IsNullOrEmpty(id))
         {
-            id = ComputeId(data);
+            id = ComputeId(encryptedData);
         }
 
         var filePath = GetFilePath(id, input?.GetType());
-        await File.WriteAllBytesAsync(filePath, data);
+
+        await File.WriteAllBytesAsync(filePath, encryptedData);
 
         _filePaths[id] = filePath; // Cache the file path
 
@@ -105,17 +114,17 @@ public class DataStore : IDisposable
 
         if (_filePaths.TryGetValue(id, out var filePath) && File.Exists(filePath))
         {
-            using (var stream = File.OpenRead(filePath))
+            var encryptedData = File.ReadAllBytes(filePath);
+            var plainData = AesEncryption.Decrypt(encryptedData);
+
+            var data = await JsonSerializer.DeserializeAsync<T?>(plainData);
+
+            if (data == null)
             {
-                var data = await JsonSerializer.DeserializeAsync<T?>(stream);
-
-                if (data == null)
-                {
-                    return Maybe<T>.Empty;
-                }
-
-                return new Maybe<T>(data, true);
+                return Maybe<T>.Empty;
             }
+
+            return new Maybe<T>(data, true);
         }
 
         return Maybe<T>.Empty; // Return null if the object is not found
