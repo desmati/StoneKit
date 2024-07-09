@@ -58,12 +58,11 @@ internal static class AesEncryption
     /// </summary>
     /// <param name="cipherBytes">The encrypted byte array.</param>
     /// <returns>The decrypted text as a byte array.</returns>
-    public static MemoryStream Decrypt(this byte[] cipherBytes)
+    public static byte[] Decrypt(this byte[] cipherBytes)
     {
         if (!enabled)
         {
-            using var result = new MemoryStream(cipherBytes);
-            return result;
+            return cipherBytes;
         }
 
         using var aes = Aes.Create();
@@ -76,6 +75,6 @@ internal static class AesEncryption
         using var msPlain = new MemoryStream();
         csDecrypt.CopyTo(msPlain);
 
-        return msPlain;
+        return msPlain.ToArray();
     }
 }

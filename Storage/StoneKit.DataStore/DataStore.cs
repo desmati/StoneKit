@@ -117,14 +117,16 @@ public class DataStore : IDisposable
             var encryptedData = File.ReadAllBytes(filePath);
             var plainData = AesEncryption.Decrypt(encryptedData);
 
-            var data = await JsonSerializer.DeserializeAsync<T?>(plainData);
-
-            if (data == null)
+            using (var ms = new MemoryStream(plainData))
             {
-                return Maybe<T>.Empty;
-            }
+                var data = await JsonSerializer.DeserializeAsync<T?>(ms);
+                if (data == null)
+                {
+                    return Maybe<T>.Empty;
+                }
 
-            return new Maybe<T>(data, true);
+                return new Maybe<T>(data, true);
+            }
         }
 
         return Maybe<T>.Empty; // Return null if the object is not found
@@ -136,7 +138,18 @@ public class DataStore : IDisposable
     /// <param name="id">The ID.</param>
     /// <param name="type">The type of the object.</param>
     /// <returns>The file path.</returns>
-    private string GetFilePath(string id, Type? type) => Path.Combine(_directoryPath, type?.Namespace ?? "NoNamespace", type?.Name ?? "Untyped", $"{id}.stone");
+    private string GetFilePath(string id, Type? type)
+    {
+        var path = Path.Combine(_directoryPath, type?.Namespace ?? "NoNamespace", type?.Name ?? "Untyped");
+        if (!Directory.Exists(path))
+        {
+            Directory.CreateDirectory(path);
+        }
+
+        var pathFile = Path.Combine(path, $"{id}.stone");
+
+        return pathFile;
+    }
 
     /// <summary>
     /// Computes an ID for the given input byte array using MD5 hashing.

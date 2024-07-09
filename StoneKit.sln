@@ -101,6 +101,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Storage", "Storage", "{6690
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StoneKit.DataStore", "Storage\StoneKit.DataStore\StoneKit.DataStore.csproj", "{DE72E486-5ABE-4AB0-BFE3-81CF91AAA244}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StoneKit.DataStore.Tests", "Storage\StoneKit.DataStore.Tests\StoneKit.DataStore.Tests.csproj", "{3BB59A6F-6045-46BB-81CD-DF63D2EA9F47}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -223,6 +225,10 @@ Global
 		{DE72E486-5ABE-4AB0-BFE3-81CF91AAA244}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DE72E486-5ABE-4AB0-BFE3-81CF91AAA244}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DE72E486-5ABE-4AB0-BFE3-81CF91AAA244}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3BB59A6F-6045-46BB-81CD-DF63D2EA9F47}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3BB59A6F-6045-46BB-81CD-DF63D2EA9F47}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3BB59A6F-6045-46BB-81CD-DF63D2EA9F47}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3BB59A6F-6045-46BB-81CD-DF63D2EA9F47}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -265,6 +271,7 @@ Global
 		{6C30D8C9-4285-46DE-A7A0-8D4D0ACDD2C0} = {0837B416-33DF-4617-B57F-11E9D39131DB}
 		{0179565A-8372-4E29-93AF-C41DC90C0EA4} = {0837B416-33DF-4617-B57F-11E9D39131DB}
 		{DE72E486-5ABE-4AB0-BFE3-81CF91AAA244} = {6690055B-FB10-4693-A76A-6044AA8CEB0E}
+		{3BB59A6F-6045-46BB-81CD-DF63D2EA9F47} = {6690055B-FB10-4693-A76A-6044AA8CEB0E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {62DD61DF-EBBE-46C3-94C5-C769E05AA273}
