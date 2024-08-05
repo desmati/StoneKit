@@ -112,7 +112,16 @@ public class DataStore : IDisposable
             return Maybe<T>.Empty;
         }
 
-        if (_filePaths.TryGetValue(id, out var filePath) && File.Exists(filePath))
+        if (!_filePaths.TryGetValue(id, out var filePath) || string.IsNullOrEmpty(filePath))
+        {
+            filePath = GetFilePath(id, typeof(T));
+            if (!string.IsNullOrEmpty(filePath))
+            {
+                _filePaths.TryAdd(id, filePath);
+            }
+        }
+
+        if (File.Exists(filePath))
         {
             var encryptedData = File.ReadAllBytes(filePath);
             var plainData = AesEncryption.Decrypt(encryptedData);

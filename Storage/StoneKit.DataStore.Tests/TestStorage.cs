@@ -30,7 +30,7 @@ namespace StoneKit.DataStore.Tests
                 }
             };
 
-            System.Data.DataStore.StaticStorage.SaveAsync(data, "CustomFileNameAsId_ENC").GetAwaiter().GetResult();
+            //System.Data.DataStore.StaticStorage.SaveAsync(data, "CustomFileNameAsId_ENC").GetAwaiter().GetResult();
 
             var fetchedData = System.Data.DataStore.StaticStorage.LoadAsync<SampleData>("CustomFileNameAsId_ENC").GetAwaiter().GetResult();
 
@@ -62,7 +62,7 @@ namespace StoneKit.DataStore.Tests
                 }
             };
 
-            System.Data.DataStore.StaticStorage.SaveAsync(data, "CustomFileNameAsId").GetAwaiter().GetResult();
+            //System.Data.DataStore.StaticStorage.SaveAsync(data, "CustomFileNameAsId").GetAwaiter().GetResult();
 
             var fetchedData = System.Data.DataStore.StaticStorage.LoadAsync<SampleData>("CustomFileNameAsId").GetAwaiter().GetResult();
 
