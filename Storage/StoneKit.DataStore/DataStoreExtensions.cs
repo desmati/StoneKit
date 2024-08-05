@@ -22,7 +22,7 @@ public static class DataStoreExtensions
 
         AesEncryption.Init(options.EncryptionKey);
 
-        var dataStore = new DataStore(options.DirectoryPath, options.FileLifetime, options.CleanupInterval, !string.IsNullOrEmpty(options.EncryptionKey));
+        var dataStore = new DataStore(options.DirectoryOrFilePath, options.FileLifetime, options.CleanupInterval, !string.IsNullOrEmpty(options.EncryptionKey));
 
         DataStore.StaticStorage = dataStore;
 

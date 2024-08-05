@@ -14,7 +14,6 @@
 
 	<ItemGroup>
 		<PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="8.0.1" />
-		<PackageReference Include="StoneKit.Core.Structs.Maybe" Version="*" />
 	</ItemGroup>
 
 </Project>

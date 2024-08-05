@@ -17,6 +17,8 @@ public class DataStore : IDisposable
     const int DEFAULT_CLEANUP_INTERVAL_IN_MINUTES = 60;
 
     private readonly string _directoryPath;
+    private readonly string _filePath;
+    private readonly bool _isFile;
     private readonly ConcurrentDictionary<string, string> _filePaths;
     private readonly Timer? _cleanupTimer;
     private readonly bool encryptionEnabled = false;
@@ -25,19 +27,31 @@ public class DataStore : IDisposable
     /// <summary>
     /// Initializes a new instance of the <see cref="DataStore"/> class.
     /// </summary>
-    /// <param name="directoryPath">The directory path where data will be stored.</param>
+    /// <param name="directoryOrFilePath">The directory path where data will be stored. Set it as file path if only a single file will be stored.</param>
     /// <param name="fileLifetime">The time span after which files should be considered for cleanup.</param>
     /// <param name="cleanupInterval">The interval at which the cleanup task will run.</param>
-    public DataStore(string? directoryPath, TimeSpan? fileLifetime = null, TimeSpan? cleanupInterval = null, bool encryptionEnabled = false)
+    public DataStore(string? directoryOrFilePath, TimeSpan? fileLifetime = null, TimeSpan? cleanupInterval = null, bool encryptionEnabled = false)
     {
-        _directoryPath = Path.Combine(directoryPath ?? $"./DataStore");
-        _filePaths = new ConcurrentDictionary<string, string>();
+        _isFile = !string.IsNullOrEmpty(directoryOrFilePath) && Path.HasExtension(directoryOrFilePath);
+        _filePath = "";
+        _directoryPath = "";
 
-        // Ensure the directory exists
-        if (!Directory.Exists(_directoryPath))
+        if (_isFile)
         {
-            Directory.CreateDirectory(_directoryPath);
+            _filePath = directoryOrFilePath!;
+            _directoryPath = Path.GetDirectoryName(_filePath) ?? "";
         }
+        else
+        {
+            _directoryPath = Path.Combine(directoryOrFilePath ?? $"./DataStore");
+            // Ensure the directory exists
+            if (!Directory.Exists(_directoryPath))
+            {
+                Directory.CreateDirectory(_directoryPath);
+            }
+        }
+
+        _filePaths = new ConcurrentDictionary<string, string>();
 
         _cleanupTimer = SetupCleanup(fileLifetime, cleanupInterval);
         this.encryptionEnabled = encryptionEnabled;
@@ -90,7 +104,7 @@ public class DataStore : IDisposable
             id = ComputeId(encryptedData);
         }
 
-        var filePath = GetFilePath(id, input?.GetType());
+        var filePath = _isFile ? _filePath : GetFilePath(id, input?.GetType());
 
         await File.WriteAllBytesAsync(filePath, encryptedData);
 
@@ -105,20 +119,26 @@ public class DataStore : IDisposable
     /// <typeparam name="T">The type of the object to load.</typeparam>
     /// <param name="id">The ID associated with the object.</param>
     /// <returns>A task representing the asynchronous load operation. The task result contains the object.</returns>
-    public async Task<Maybe<T>> LoadAsync<T>(string id)
+    public async Task<T?> LoadAsync<T>(string? id = null)
     {
-        if (string.IsNullOrEmpty(id))
+        if (!_isFile && string.IsNullOrEmpty(id))
         {
-            return Maybe<T>.Empty;
+            return default;
         }
 
-        if (!_filePaths.TryGetValue(id, out var filePath) || string.IsNullOrEmpty(filePath))
+        var filePath = "";
+        if (!_isFile && !string.IsNullOrEmpty(id) && (!_filePaths.TryGetValue(id, out filePath) || string.IsNullOrEmpty(filePath)))
         {
             filePath = GetFilePath(id, typeof(T));
             if (!string.IsNullOrEmpty(filePath))
             {
                 _filePaths.TryAdd(id, filePath);
             }
+        }
+
+        if (_isFile)
+        {
+            filePath = _filePath;
         }
 
         if (File.Exists(filePath))
@@ -129,16 +149,11 @@ public class DataStore : IDisposable
             using (var ms = new MemoryStream(plainData))
             {
                 var data = await JsonSerializer.DeserializeAsync<T?>(ms);
-                if (data == null)
-                {
-                    return Maybe<T>.Empty;
-                }
-
-                return new Maybe<T>(data, true);
+                return data;
             }
         }
 
-        return Maybe<T>.Empty; // Return null if the object is not found
+        return default; // Return null if the object is not found
     }
 
     /// <summary>

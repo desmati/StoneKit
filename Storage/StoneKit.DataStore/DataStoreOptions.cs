@@ -6,9 +6,9 @@
 public class DataStoreOptions
 {
     /// <summary>
-    /// Gets or sets the directory path where data will be stored.
+    /// Gets or sets the directory path where data will be stored. Set it as file path if only a single file will be stored.
     /// </summary>
-    public string? DirectoryPath { get; set; }
+    public string? DirectoryOrFilePath { get; set; }
 
     /// <summary>
     /// Gets or sets an encryption key used for encrypting/decrypting file contents using AES. No encryption will be used if left blank or null.
