@@ -4,20 +4,20 @@ namespace System.Net
 {
     public class ApiException : Exception
     {
-        public int StatusCode { get; private set; }
+        public OperationStatusCodes StatusCode { get; private set; }
 
         public string? Response { get; private set; }
 
         public IReadOnlyDictionary<string, IEnumerable<string>>? Headers { get; private set; }
 
         public LogLevel LogLevel { get; set; } = LogLevel.Error;
-        public int? ErrorCode { get; set; }
+        public string ErrorCode => StatusCode.ToString();
 
         public ApiException(string message) : base(message)
         {
         }
 
-        public ApiException(string message, int statusCode, string response, IReadOnlyDictionary<string, IEnumerable<string>>? headers, Exception? innerException)
+        public ApiException(string message, OperationStatusCodes statusCode, string response, IReadOnlyDictionary<string, IEnumerable<string>>? headers, Exception? innerException)
              : base(message + "\n\nStatus: " + statusCode + "\nResponse: \n" + response.Substring(0, response.Length >= 512 ? 512 : response.Length), innerException)
         {
             StatusCode = statusCode;
@@ -42,7 +42,7 @@ namespace System.Net
     {
         public TResult Result { get; private set; }
 
-        public ApiException(string message, int statusCode, string response, IReadOnlyDictionary<string, IEnumerable<string>> headers, TResult result, Exception innerException)
+        public ApiException(string message, OperationStatusCodes statusCode, string response, IReadOnlyDictionary<string, IEnumerable<string>> headers, TResult result, Exception innerException)
              : base(message, statusCode, response, headers, innerException)
         {
             Result = result;

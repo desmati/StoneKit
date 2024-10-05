@@ -116,7 +116,7 @@ namespace System.Net
                         if (status_ != "204")
                         {
                             var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
-                            throw new ApiException("The HTTP status code of the response was not expected (" + (int)response_.StatusCode + ").", (int)response_.StatusCode, responseData_ ?? "NO RESPONSE DATA", headers_, null);
+                            throw new ApiException("The HTTP status code of the response was not expected (" + (int)response_.StatusCode + ").", (OperationStatusCodes)response_.StatusCode, responseData_ ?? "NO RESPONSE DATA", headers_, null);
                         }
 
                         return default;
@@ -183,7 +183,7 @@ namespace System.Net
                         if (status_ != "204")
                         {
                             var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
-                            throw new ApiException("The HTTP status code of the response was not expected (" + (int)response_.StatusCode + ").", (int)response_.StatusCode, responseData_ ?? "NO RESPONSE DATA", headers_, null);
+                            throw new ApiException("The HTTP status code of the response was not expected (" + (int)response_.StatusCode + ").", (OperationStatusCodes)response_.StatusCode, responseData_ ?? "NO RESPONSE DATA", headers_, null);
                         }
 
                         return default;
@@ -227,7 +227,7 @@ namespace System.Net
                 catch (JsonException exception)
                 {
                     var message = "Could not deserialize the response body string as " + typeof(T).FullName + ".";
-                    throw new ApiException(message, (int)response.StatusCode, responseText, headers, exception);
+                    throw new ApiException(message, (OperationStatusCodes)response.StatusCode, responseText, headers, exception);
                 }
             }
             else
@@ -246,7 +246,7 @@ namespace System.Net
                 catch (JsonException exception)
                 {
                     var message = "Could not deserialize the response body stream as " + typeof(T).FullName + ".";
-                    throw new ApiException(message, (int)response.StatusCode, string.Empty, headers, exception);
+                    throw new ApiException(message, (OperationStatusCodes)response.StatusCode, string.Empty, headers, exception);
                 }
             }
         }

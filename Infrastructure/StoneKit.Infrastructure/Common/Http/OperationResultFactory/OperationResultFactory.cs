@@ -2,25 +2,16 @@ namespace System.Net
 {
     public sealed class OperationResultFactory : IOperationResultFactory
     {
-        private OperationResult? _operationResult;
+        private OperationResult<object>? _operationResult;
 
         private List<string>? _warnings;
         public List<string> Warnings => _warnings ?? (_warnings = new List<string>());
 
         public OperationResult<T> CreateSuccess<T>(T? model, string? message = null)
         {
-            _operationResult = new OperationResult<T>
-            {
-                Data = model,
-                ResponseInfo = new ResponseInfo
-                {
-                    Success = true,
-                    Message = message ?? "",
-                    Warnings = _warnings ?? new List<string>()
-                }
-            };
+            var result = new OperationResult<T>();
 
-            return (OperationResult<T>)_operationResult;
+            return result.Success(model, message, OperationStatusCodes.OK, _warnings);
         }
 
         public OperationResult CreateSuccess()
@@ -33,21 +24,11 @@ namespace System.Net
             Warnings.Add(message);
         }
 
-        public OperationResult<T> CreateFailure<T>(T? model, string? errorMessage, string? errorCode = null)
+        public OperationResult<T> CreateFailure<T>(T? model, string? errorMessage, OperationStatusCodes? errorCode = null)
         {
-            _operationResult = new OperationResult<T>
-            {
-                Data = model,
-                ResponseInfo = new ResponseInfo
-                {
-                    Success = false,
-                    Message = (string.IsNullOrEmpty(errorCode) ? "" : $"{errorCode}: ") + errorMessage,
-                    Warnings = _warnings ?? new List<string>(),
-                    ErrorCode = errorCode ?? ""
-                }
-            };
+            var result = new OperationResult<T>();
 
-            return (OperationResult<T>)_operationResult;
+            return result.Failure(errorMessage);
         }
     }
 }

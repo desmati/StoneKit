@@ -50,10 +50,8 @@ namespace Microsoft.Extensions.Configuration
                     }
 
 
-                    var operationResult = new OperationResult<ExceptionDetailsModel>
-                    {
-                        ResponseInfo = new ResponseInfo()
-                    };
+                    var operationResult = new OperationResult<ExceptionDetailsModel>();
+                    
                     if (exception is ApiException apiException)
                     {
                         Log.Write(apiException.LogLevel.ConvertLogLevelFromMicrosoft(), exception,
@@ -64,10 +62,10 @@ namespace Microsoft.Extensions.Configuration
 
                         if (exception is UserFriendlyException userFriendlyException)
                         {
-                            httpContext.Response.StatusCode = 200; //Ok    
+                            operationResult.AddFriendlyException(userFriendlyException);
                         }
 
-                        operationResult.ResponseInfo.ErrorCode = apiException?.ErrorCode?.ToString() ?? "NONE";
+                        operationResult.AddException(exception);
                     }
                     else
                     {
@@ -77,11 +75,10 @@ namespace Microsoft.Extensions.Configuration
                             httpContext.Request.Method,
                             httpContext.Connection?.RemoteIpAddress?.ToString());
 
-                        operationResult.Data = exception.GetFullExceptionDetails();
+                        operationResult.AddException(exception);
                     }
 
-                    operationResult.ResponseInfo.Message = exception.GetExceptionMessages();
-                    operationResult.ResponseInfo.Success = false;
+                    operationResult.AddException(exception);
 
                     Formatting jsonFormatting = _hostingEnvironment.IsDevelopment() ? Formatting.Indented : Formatting.None;
                     string json = JsonConvert.SerializeObject(operationResult, new JsonSerializerSettings { Formatting = jsonFormatting });

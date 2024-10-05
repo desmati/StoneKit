@@ -60,7 +60,7 @@ public static class ConfigureServicesExtensions
         builder.Services.AddSingleton<IHashProvider, HashProvider>();
 
         builder.Services.AddScoped<IOperationResultFactory, OperationResultFactory>();
-        builder.Services.AddSingleton<OperationResultFactoryExample>();
+        //builder.Services.AddSingleton<OperationResultFactoryExample>();
 
     }
 
